@@ -15,6 +15,7 @@ public class Viewer {
 	public static void main(String[] args) {
 		//frame [frame principale]
 		//base  [frame sfondo]
+		
 		JFrame frame = new Sistema();
 		JFrame base = new JFrame();
 		frame.setUndecorated(true);
