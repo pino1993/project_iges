@@ -1,4 +1,4 @@
-package progettoPart2;
+package com.prezzipazzi.prezzipazzi;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package progettoPart2;
+package com.prezzipazzi.prezzipazzi;
 
 import java.io.File;
 import java.util.GregorianCalendar;
