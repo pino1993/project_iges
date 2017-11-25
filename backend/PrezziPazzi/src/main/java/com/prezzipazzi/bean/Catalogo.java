@@ -1,4 +1,4 @@
-package com.prezzipazzi.prezzipazzi;
+package com.prezzipazzi.bean;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

@@ -1,4 +1,4 @@
-package com.prezzipazzi.prezzipazzi;
+package com.prezzipazzi.bean;
 
 /**
  * 
