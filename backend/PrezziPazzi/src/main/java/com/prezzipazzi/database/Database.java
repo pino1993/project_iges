@@ -26,7 +26,7 @@ public class Database {
 			Context initCtx = new InitialContext();
 			Context envCtx = (Context) initCtx.lookup("java:comp/env");
 
-			ds = (DataSource) envCtx.lookup("jdbc/mua");
+			ds = (DataSource) envCtx.lookup("jdbc/utenti");
 
 		} catch (NamingException e) {
 			System.out.println("Error:" + e.getMessage());
@@ -39,7 +39,8 @@ public class Database {
 		} catch (NullPointerException e) {
 			try {
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
-				return DriverManager.getConnection("jdbc:mysql://localhost/mua?" + "user=root&password=admin&useSSL=false");
+                                //jdbc:mysql://localhost:3306/utenti?zeroDateTimeBehavior=convertToNull [root on Default schema]
+				return DriverManager.getConnection("jdbc:mysql://localhost:3306/utenti?" + "user=root&password=root&useSSL=false");
 			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {
 				ex.printStackTrace();
 			}
