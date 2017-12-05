@@ -40,7 +40,7 @@ public class Database {
 			try {
 				Class.forName("com.mysql.jdbc.Driver").newInstance();
                                 //jdbc:mysql://localhost:3306/utenti?zeroDateTimeBehavior=convertToNull [root on Default schema]
-				return DriverManager.getConnection("jdbc:mysql://localhost:3306/DbPrezziPazzi?" + "user=root&password=&useSSL=false");
+				return DriverManager.getConnection("jdbc:mysql://localhost:3306/DbPrezziPazzi?" + "user=root&password=root&useSSL=false");
 			} catch (InstantiationException | IllegalAccessException | ClassNotFoundException ex) {
 				ex.printStackTrace();
 			}

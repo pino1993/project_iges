@@ -48,6 +48,7 @@ public class AutenticazioneServlet extends HttpServlet {
         try {
             switch (request.getServletPath()) {
                 case "/Login":
+                    System.out.println("Provaaaaaaaaa");
                     String mail = request.getParameter("email");
                     String pass = request.getParameter("password");
                     TipoUtente tipo = controllaTipo(mail);

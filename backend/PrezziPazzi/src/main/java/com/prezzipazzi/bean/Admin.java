@@ -13,7 +13,6 @@ public class Admin extends Utente{
 	 * @param password
 	 * @param nome
 	 * @param cognome
-	 * @param matricola
 	 */
 	public Admin(String email, String password, String nome, String cognome) {
 		super(email, password, nome, cognome);

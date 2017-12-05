@@ -30,42 +30,19 @@ public class ManagerAutenticazione {
 		try {
 			conn = Database.getConnessione();
 			pstmt = conn.prepareStatement(
-					"SELECT email, password, nome, cognome, matricola, indirizzo, firebaseToken, attiva FROM docente WHERE email LIKE BINARY ? AND password LIKE BINARY SHA2(?, 224)");
+					"SELECT Email_Admin,Password FROM admin WHERE Email_Admin = ? AND Password = ?");
 
 			pstmt.setString(1, email);
 			pstmt.setString(2, password);
 
 			ResultSet rs = pstmt.executeQuery();
+                        System.out.println("Result set "+rs.next());
 			if (!rs.next()) {
-				throw new AuthException("Email e/o password errate");
+				throw new AuthException("Email e/o password errate!!!!!!!!!!!!");
 			} else {
 
-				rs.getString("attiva");
-				if (!rs.wasNull()) {
-					throw new AuthException("Confermare prima l'indirizzo email");
-				}
-
-				String nome = rs.getString("nome");
-				String cognome = rs.getString("cognome");
-				String matricola = rs.getString("matricola");
-				String indirizzo = rs.getString("indirizzo");
-
-				pstmt.close();
-//				if (token != null) {
-//					pstmt = conn.prepareStatement("UPDATE docente SET firebaseToken = ? WHERE email LIKE BINARY ?");
-//					pstmt.setString(1, token);
-//					pstmt.setString(2, email);
-//					pstmt.executeUpdate();
-//					pstmt.close();
-//				}
-
-				pstmt = conn.prepareStatement("UPDATE docente SET date_last_acc = NOW() WHERE email LIKE BINARY ?");
-
-				pstmt.setString(1, email);
-
-				pstmt.executeUpdate();
-
-				return new Admin(email, null, nome, cognome);
+				System.out.println("Sono qui");
+				return new Admin(email, null, "Pino", "Papaleo");
 
 			}
 
