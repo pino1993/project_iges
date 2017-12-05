@@ -30,13 +30,13 @@ public class ManagerAutenticazione {
 		try {
 			conn = Database.getConnessione();
 			pstmt = conn.prepareStatement(
-					"SELECT Email_Admin,Password FROM admin WHERE Email_Admin = ? AND Password = ?");
+					"SELECT * FROM admin WHERE Email_Admin = ? AND Password = ?");
 
 			pstmt.setString(1, email);
 			pstmt.setString(2, password);
-
+                        System.out.println("Result set "+pstmt.toString());
 			ResultSet rs = pstmt.executeQuery();
-                        System.out.println("Result set "+rs.next());
+                        
 			if (!rs.next()) {
 				throw new AuthException("Email e/o password errate!!!!!!!!!!!!");
 			} else {
