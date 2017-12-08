@@ -24,7 +24,6 @@ public abstract class Utente {
 	 * @param password
 	 * @param nome
 	 * @param cognome
-	 * @param matricola
 	 */
 	public Utente(String email, String password,String nome, String cognome) {
 		this.nome = nome;

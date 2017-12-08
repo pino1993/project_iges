@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author andrea
  */
-@WebServlet(urlPatterns = {"/Login", "/Registrazione", "/Logout"})
+@WebServlet(urlPatterns = {"/Login", "/Logout"})
 public class AutenticazioneServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -48,7 +48,6 @@ public class AutenticazioneServlet extends HttpServlet {
         try {
             switch (request.getServletPath()) {
                 case "/Login":
-                    System.out.println("Provaaaaaaaaa");
                     String mail = request.getParameter("email");
                     String pass = request.getParameter("password");
                     TipoUtente tipo = controllaTipo(mail);
@@ -68,9 +67,11 @@ public class AutenticazioneServlet extends HttpServlet {
                     request.getSession().setAttribute("tipoUtente", tipo);
                     options.put("messaggio", "Login effettuato!");
                     break;
-                case "/Registrazione":
-                    break;
                 case "/Logout":
+                    request.getSession().removeAttribute("utente");
+                    request.getSession().invalidate();
+                    options.put("messaggio", "Logout effettuato!");
+                    //response.sendRedirect(getServletContext().getContextPath() + "/Login");
                     break;
             }
         } catch (SQLException e) {

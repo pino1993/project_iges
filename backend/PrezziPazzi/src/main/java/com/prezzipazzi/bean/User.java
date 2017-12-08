@@ -13,7 +13,6 @@ public class User extends Utente{
 	 * @param password
 	 * @param nome
 	 * @param cognome
-	 * @param matricola
 	 */
 	public User(String email, String password, String nome, String cognome) {
 		super(email, password, nome, cognome);
@@ -83,8 +82,6 @@ public class User extends Utente{
 
 
 	//Variabili d'istanza
-
-	
 	private double credito;
 	private ArrayList<Offerte> array;
 }
