@@ -65,7 +65,10 @@ public class AutenticazioneServlet extends HttpServlet {
                     }
                     request.getSession().setAttribute("utente", utente);
                     request.getSession().setAttribute("tipoUtente", tipo);
-                    options.put("messaggio", "Login effettuato!");
+//                    options.put("messaggio", "Login effettuato!");
+                    getServletContext()
+                    .getRequestDispatcher("/www/public/html/home.jsp")
+                    .forward(request, response);
                     break;
                 case "/Logout":
                     request.getSession().removeAttribute("utente");

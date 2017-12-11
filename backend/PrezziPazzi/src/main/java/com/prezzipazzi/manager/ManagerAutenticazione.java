@@ -24,7 +24,7 @@ public class ManagerAutenticazione {
         try {
             conn = Database.getConnessione();
             pstmt = conn.prepareStatement(
-                    "SELECT Email_Admin,Password FROM admin WHERE Email_Admin = ? AND Password = ?");
+                    "SELECT Email_Admin,Password,Nome,Cognome FROM admin WHERE Email_Admin = ? AND Password = ?");
 
             pstmt.setString(1, email);
             pstmt.setString(2, password);
@@ -33,7 +33,10 @@ public class ManagerAutenticazione {
             if (!rs.next()) {
                 throw new AuthException("Email e/o password errate!");
             } else {
-                return new Admin(email, null, "Admin", "Admin");
+                String nome = rs.getString("Nome");
+		String cognome = rs.getString("Cognome");
+                rs.close();
+                return new Admin(email, null, nome, cognome);
 
             }
 
@@ -59,7 +62,7 @@ public class ManagerAutenticazione {
         try {
             conn = Database.getConnessione();
             pstmt = conn.prepareStatement(
-                   "SELECT Email_Utente,Password  FROM utenti WHERE Email_Utente = ? AND Password = ?");
+                   "SELECT Email_Utente,Password,Nome,Cognome  FROM utenti WHERE Email_Utente = ? AND Password = ?");
 
             pstmt.setString(1, email);
             pstmt.setString(2, password);
@@ -68,15 +71,17 @@ public class ManagerAutenticazione {
             if (!rs.next()) {
                 throw new AuthException("Email e/o password errate");
             } else {
-                pstmt.close();
+         
 
 //                pstmt = conn.prepareStatement("UPDATE studente SET date_last_acc = NOW() WHERE email LIKE BINARY ?");
 //
 //                pstmt.setString(1, email);
 //
 //                pstmt.executeUpdate();
-
-                return new User(email, null, "Utente", "Cognome");
+                String nome = rs.getString("Nome");
+		String cognome = rs.getString("Cognome");
+                rs.close();
+                return new User(email, null, nome, cognome);
             }
 
         } finally {
