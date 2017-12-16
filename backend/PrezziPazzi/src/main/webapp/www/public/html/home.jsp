@@ -18,17 +18,17 @@
             var Grid = ReactBootstrap.Grid;
             var Row = ReactBootstrap.Row;
             var Col = ReactBootstrap.Col;
-            var Jumbotron = ReactBootstrap.Jumbotron;
             var Button = ReactBootstrap.Button;
             var PageHeader = ReactBootstrap.PageHeader;
             var ButtonGroup = ReactBootstrap.ButtonGroup;
             var DropdownButton = ReactBootstrap.DropdownButton;
             var MenuItem = ReactBootstrap.MenuItem;
+            var Thumbnail = ReactBootstrap.Thumbnail;
             
             function onSelectAlert(eventKey) {
              alert(`Alert from menu item.\neventKey: ${eventKey}`);
             }
-            
+           
             const gridInstance = (
    
         <Grid>
@@ -55,12 +55,58 @@
                 </ul>
             </Col>
             <Col md={8}>
-                <code>
-                    <Jumbotron>
-                        <h1>Hello, world!</h1>
-                        <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
-                        <p><Button bsStyle="primary">Learn more</Button></p>
-                    </Jumbotron>
+                <code style={{padding: "0px"}}>
+                    <Grid>
+                    <form name="purchaseProduct" action="#" method="POST">
+                    <input id="valueToPass" type="hidden" name="idProduct" value="" />
+                        <Row>
+                            <Col xs={6} md={5}>
+                                <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Description</p>
+                                    <p>
+                                        
+                                        <Button bsStyle="primary" value="prod1" name="bt1" onClick={() => purchase(0)}>Button</Button>&nbsp;
+                                        <Button bsStyle="default">Button</Button>
+                                       
+                                    </p>
+                                </Thumbnail>
+                            </Col>
+                            <Col xs={6} md={5}>
+                                <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Description</p>
+                                    <p>
+                                        <Button bsStyle="primary" value="prod2" name="bt2" onClick={() => purchase(0)} >Button</Button>&nbsp;
+                                        <Button bsStyle="default">Button</Button>
+                                    </p>
+                                </Thumbnail>
+                            </Col>
+                        </Row>
+                         <Row>
+                            <Col xs={6} md={5}>
+                                <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Description</p>
+                                    <p>
+                                        <Button bsStyle="primary" onClick={() => purchase(3)}>Button</Button>&nbsp;
+                                        <Button bsStyle="default">Button</Button>
+                                    </p>
+                                </Thumbnail>
+                            </Col>
+                            <Col xs={6} md={5}>
+                                <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
+                                    <h3>Thumbnail label</h3>
+                                    <p>Description</p>
+                                    <p>
+                                        <Button bsStyle="primary" onClick={() => purchase(2)}>Button</Button>&nbsp;
+                                        <Button bsStyle="default">Button</Button>
+                                    </p>
+                                </Thumbnail>
+                            </Col>
+                        </Row>
+                    </form>    
+                    </Grid>
                 </code>
             </Col>
             <Col md={1}>
@@ -70,6 +116,30 @@
                     );
 
             ReactDOM.render(gridInstance, document.getElementById("hello"));
+        </script>
+        <script>
+                     function purchase(num) {
+                        console.log("Purchase ", document.getElementById("valueToPass").value)
+                        document.forms[0].action = 'Purchase';
+                        document.getElementById("valueToPass").value = num;
+                        document.forms[0].submit();
+                        
+                        /*var url = "Purchase";
+                        var http = new XMLHttpRequest();                        
+                        var params = "idproduct="+num;
+                        http.open("POST", url, true);
+
+                        //Send the proper header information along with the request
+                        http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        
+                        http.onreadystatechange = function() {//Call a function when the state changes.
+                            if(http.readyState == 4 && http.status == 200) {
+                                alert(http.responseText);
+                            }
+                        }
+                        http.send(params);*/
+                        return true;
+                }
         </script>
     </body>
 </html>
