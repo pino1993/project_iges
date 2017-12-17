@@ -29,39 +29,40 @@
             var MenuItem = ReactBootstrap.MenuItem;
             var Thumbnail = ReactBootstrap.Thumbnail;
             var Image = ReactBootstrap.Image;
-            
+            var Tab = ReactBootstrap.Tab
+            var Nav = ReactBootstrap.Nav
+            var NavItem  = ReactBootstrap.NavItem 
             function onSelectAlert(eventKey) {
              alert(`Alert from menu item.\neventKey: ${eventKey}`);
             }
            
             const gridInstance = (
-   
+                    
+                <Tab.Container id="left-tabs-example" defaultActiveKey="first" style={{marginTop : "100px"}}>
+                    <Row className="clearfix">
+                        <Col sm={2}>
+                            <Nav bsStyle="pills" stacked>
+                                <NavItem eventKey="first">
+                                    Catalogo
+                                </NavItem>
+                                <NavItem eventKey="second">
+                                    Profilo Utente
+                                </NavItem>
+                             </Nav>
+                        </Col>
+                        <Col sm={10}>
+                            <Tab.Content animation>
+                                <Tab.Pane eventKey="first">
         <Grid>
             <Row className="show-grid">
-            <Col md={11}>
-                <PageHeader style={{color: "blue"}}>Benvenuto in PrezziPazzi.com <small><%=utente.getNome()%> <%=utente.getCognome()%> </small></PageHeader>
+            <Col md={9}>
+                <PageHeader style={{color: "blue",marginTop: "-96px"}}>Benvenuto in PrezziPazzi.com <small><%=utente.getNome()%> <%=utente.getCognome()%> </small></PageHeader>
             </Col>
             <Col md={1}>
-                <a title="Logout <%=utente.getEmail()%>"><Image onClick={() => logout()} style={{height: "60px",marginTop: "30px"}} src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/512px-Circle-icons-profle.svg.png" responsive circle /></a>
+                <a title="Logout <%=utente.getEmail()%>"><Image onClick={() => logout()} style={{height: "60px",marginTop: "-77px"}} src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/512px-Circle-icons-profle.svg.png" responsive circle /></a>
             </Col>
             </Row>
             <Row className="show-grid">
-            <Col md={2}>
-                <ul className="dropdown-menu open" style={{marginRight: '5px',position: 'static',display: "block",clear: "left"}}>
-                    <MenuItem header>Header</MenuItem>
-                    <MenuItem>link</MenuItem>
-                    <MenuItem divider />
-                    <MenuItem header>Header</MenuItem>
-                    <MenuItem>link</MenuItem>
-                    <MenuItem disabled>disabled</MenuItem>
-                    <MenuItem title="See? I have a title.">
-                        link with title
-                    </MenuItem>
-                    <MenuItem eventKey={1} href="#someHref" onSelect={onSelectAlert}>
-                        link that alerts
-                    </MenuItem>
-                </ul>
-            </Col>
             <Col md={8}>
                 <code style={{padding: "0px"}}>
                     <Grid>
@@ -69,7 +70,7 @@
                     <input id="valueToPass" type="hidden" name="idProduct" value="" />
                         <Row>
                             <Col xs={6} md={5}>
-                                <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
+                                <Thumbnail src="/PrezziPazzi/www/assets/thumbnaildiv.png" alt="242x200">
                                     <h3>Thumbnail label</h3>
                                     <p>Description</p>
                                     <p>
@@ -81,7 +82,7 @@
                                 </Thumbnail>
                             </Col>
                             <Col xs={6} md={5}>
-                                <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
+                                <Thumbnail src="/PrezziPazzi/www/assets/thumbnaildiv.png" alt="242x200">
                                     <h3>Thumbnail label</h3>
                                     <p>Description</p>
                                     <p>
@@ -93,7 +94,7 @@
                         </Row>
                          <Row>
                             <Col xs={6} md={5}>
-                                <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
+                                <Thumbnail src="/PrezziPazzi/www/assets/thumbnaildiv.png" alt="242x200">
                                     <h3>Thumbnail label</h3>
                                     <p>Description</p>
                                     <p>
@@ -103,7 +104,7 @@
                                 </Thumbnail>
                             </Col>
                             <Col xs={6} md={5}>
-                                <Thumbnail src="https://sslcom.github.io/bootsharp/assets/thumbnaildiv.png" alt="242x200">
+                                <Thumbnail src="/PrezziPazzi/www/assets/thumbnaildiv.png" alt="242x200">
                                     <h3>Thumbnail label</h3>
                                     <p>Description</p>
                                     <p>
@@ -121,7 +122,24 @@
             </Col>
             </Row>
         </Grid>
-                    );
+    </Tab.Pane>
+    <Tab.Pane eventKey="second">
+        <Grid>
+            <Row className="show-grid">
+            <Col md={9}>
+                <PageHeader style={{color: "blue",marginTop: "-96px"}}>Benvenuto in PrezziPazzi.com <small><%=utente.getNome()%> <%=utente.getCognome()%> </small></PageHeader>
+            </Col>
+            <Col md={1}>
+                <a title="Logout <%=utente.getEmail()%>"><Image onClick={() => logout()} style={{height: "60px",marginTop: "-77px"}} src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/512px-Circle-icons-profle.svg.png" responsive circle /></a>
+            </Col>
+            </Row>
+        </Grid>
+    </Tab.Pane>
+    </Tab.Content>
+    </Col>
+    </Row>
+    </Tab.Container>
+            );
 
             ReactDOM.render(gridInstance, document.getElementById("hello"));
         </script>

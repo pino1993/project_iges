@@ -16,8 +16,8 @@ public class PrestazioniOpera extends Offerte{
 	 * @param fornitore
 	 * @param giudizio
 	 */
-	public PrestazioniOpera(int id, double prezzo, String localita, String descrizione, String fornitore,int giudizio) {
-		super(id, prezzo);
+	public PrestazioniOpera(int id, double prezzo, String img,String localita, String descrizione, String fornitore,int giudizio) {
+		super(id, prezzo,img);
 		this.descrizione = descrizione;
 		this.fornitore = fornitore;
 		this.giudizio = giudizio;

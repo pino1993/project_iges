@@ -16,8 +16,8 @@ public class BeniDiConsumo extends Offerte{
 	 * @param fornitore
 	 * @param giudizio
 	 */
-	public BeniDiConsumo(int id, double prezzo,String descrizione,int daVendere,String fornitore, int giudizio) {
-		super(id, prezzo);
+	public BeniDiConsumo(int id, double prezzo,String img,String descrizione,int daVendere,String fornitore, int giudizio) {
+		super(id, prezzo,img);
 		this.daVendere = daVendere;
 		this.descrizione = descrizione;
 		this.fornitore = fornitore;

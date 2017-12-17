@@ -19,8 +19,8 @@ public class Cene extends Offerte  {
 	 * @param scadenza
 	 * @param daVendere
 	 */
-	public Cene(int id, double prezzo, String ristorante,String descrizione,String luogo,GregorianCalendar scadenza,int daVendere) {
-		super(id, prezzo);
+	public Cene(int id, double prezzo, String img,String ristorante,String descrizione,String luogo,GregorianCalendar scadenza,int daVendere) {
+		super(id, prezzo,img);
 		this.daVendere = daVendere;
 		this.descrizione = descrizione;
 		this.luogo = luogo;
