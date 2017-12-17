@@ -13,10 +13,12 @@ import com.prezzipazzi.bean.Utente;
 import com.prezzipazzi.manager.ManagerAutenticazione;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -63,9 +65,25 @@ public class AutenticazioneServlet extends HttpServlet {
                         response.getWriter().write("Email non valida!");
                         return;
                     }
+                    
                     request.getSession().setAttribute("utente", utente);
                     request.getSession().setAttribute("tipoUtente", tipo);
-//                    options.put("messaggio", "Login effettuato!");
+                    
+                    if(request.getParameter("rememberMe") != null && request.getParameter("rememberMe").equals("on") ){
+                        Date now = new Date();
+                        String timestamp = now.toString();
+                        Cookie cookieMail = new Cookie ("usernamePrezziPazzi",mail);
+                        cookieMail.setMaxAge(365 * 24 * 60 * 60);
+                        
+                        Cookie cookiePass = new Cookie("passwordPrezziPazzi",pass);
+                        cookiePass.setMaxAge(365 * 24 * 60 * 60);
+                        
+                        response.addCookie(cookieMail);
+                        response.addCookie(cookiePass);
+                        System.out.println("Cookie settati");
+                    }
+                   
+//                  options.put("messaggio", "Login effettuato!");
                     getServletContext()
                     .getRequestDispatcher("/www/public/html/home.jsp")
                     .forward(request, response);

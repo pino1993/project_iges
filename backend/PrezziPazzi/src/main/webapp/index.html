@@ -12,7 +12,44 @@
     </head>
     <body>
         <div id="hello" style="margin-top:50px;"></div>
+        <form name="purchaseProduct" action="Login" method="POST">
+                    <input id="valueToPassEmail" type="hidden" name="email" value="" />
+                    <input id="valueToPassPassword" type="hidden" name="password" value="" />
+        </form>
         <script type="text/babel">
+            
+            
+            
+            
+            var cUs = getCookie("usernamePrezziPazzi")
+            var cPsw = getCookie("passwordPrezziPazzi")
+             console.log("Ceck cookie");
+            if(cUs !== "" && cPsw !== ""){
+                //autlogin
+                
+               
+                /*var url = "Login";
+                var http = new XMLHttpRequest();                        
+                var params = "email="+cUs+"&password="+cPsw;
+                http.open("POST", url, true);
+
+                //Send the proper header information along with the request
+                http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        
+                http.onreadystatechange = function() {//Call a function when the state changes.
+                    if(http.readyState == 4 && http.status == 200) {
+                        //alert(http.responseText);
+                        window.location = "home.jsp";
+                    }
+                }
+                http.send(params);*/
+                //AUTOLOGIN
+                document.getElementById("valueToPassEmail").value = cUs;
+                document.getElementById("valueToPassPassword").value = cPsw;
+                document.forms[0].submit();
+                
+            }
+            else{
             var Form = ReactBootstrap.Form;
             var FormGroup = ReactBootstrap.FormGroup;
             var Col = ReactBootstrap.Col;
@@ -20,8 +57,11 @@
             var FormControl  = ReactBootstrap.FormControl; 
             var Checkbox  = ReactBootstrap.Checkbox;
             var Button = ReactBootstrap.Button; 
+            var Image = ReactBootstrap.Image;
 const formInstance = (
+        
   <Form horizontal method="post" action="Login">
+            <Image src="http://www.opinioni.it/Uploads/Products/399/prezzipazzi.com_large.jpg" responsive />
     <FormGroup controlId="formHorizontalEmail">
       <Col componentClass={ControlLabel} sm={2}>
         Email
@@ -32,15 +72,15 @@ const formInstance = (
     </FormGroup>
     <FormGroup controlId="formHorizontalPassword">
     <Col componentClass={ControlLabel} sm={2}>
-        Password
-    </Col>
-    <Col sm={5}>
-        <FormControl type="password" placeholder="Password" name="password"/>
-    </Col>
-    </FormGroup>
-    <FormGroup>
+Password
+</Col>
+<Col sm={5}>
+<FormControl type="password" placeholder="Password" name="password"/>
+</Col>
+</FormGroup>
+<FormGroup>
     <Col smOffset={2} sm={10}>
-    <Checkbox>Remember me</Checkbox>
+    <Checkbox name="rememberMe">Remember me</Checkbox>
     </Col>
 </FormGroup>
 
@@ -55,6 +95,26 @@ const formInstance = (
 );
 
 ReactDOM.render(formInstance,document.getElementById("hello"));
+            }
+            
+            
+  
+
+    function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
         </script>
     </body>
 </html>
