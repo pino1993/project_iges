@@ -4,7 +4,11 @@
     Author     : andrea
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="com.prezzipazzi.bean.Utente"%>
+<%
+	Utente utente = (Utente) request.getSession().getAttribute("utente");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,6 +28,7 @@
             var DropdownButton = ReactBootstrap.DropdownButton;
             var MenuItem = ReactBootstrap.MenuItem;
             var Thumbnail = ReactBootstrap.Thumbnail;
+            var Image = ReactBootstrap.Image;
             
             function onSelectAlert(eventKey) {
              alert(`Alert from menu item.\neventKey: ${eventKey}`);
@@ -33,9 +38,12 @@
    
         <Grid>
             <Row className="show-grid">
-            <Col md={12}>
-                <PageHeader>Example page header <small>Subtext for header</small></PageHeader>
-            </Col>    
+            <Col md={11}>
+                <PageHeader style={{color: "blue"}}>Benvenuto in PrezziPazzi.com <small><%=utente.getNome()%> <%=utente.getCognome()%> </small></PageHeader>
+            </Col>
+            <Col md={1}>
+                <a title="Logout <%=utente.getEmail()%>"><Image onClick={() => logout()} style={{height: "60px",marginTop: "30px"}} src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/512px-Circle-icons-profle.svg.png" responsive circle /></a>
+            </Col>
             </Row>
             <Row className="show-grid">
             <Col md={2}>
@@ -118,13 +126,22 @@
             ReactDOM.render(gridInstance, document.getElementById("hello"));
         </script>
         <script>
-                     function purchase(num) {
+                    function purchase(num) {
                         console.log("Purchase ", document.getElementById("valueToPass").value)
                         document.forms[0].action = 'Purchase';
                         document.getElementById("valueToPass").value = num;
                         document.forms[0].submit();
                         return true;
-                }
+                    }
+                    
+                     function logout() {
+                        document.cookie = "usernamePrezziPazzi" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                        document.cookie = "passwordPrezziPazzi" + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+                        document.forms[0].action = 'Logout';
+                        document.getElementById("valueToPass").value = "";
+                        document.forms[0].submit();
+                        return true;
+                    }
         </script>
     </body>
 </html>

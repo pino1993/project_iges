@@ -91,7 +91,16 @@ public class AutenticazioneServlet extends HttpServlet {
                 case "/Logout":
                     request.getSession().removeAttribute("utente");
                     request.getSession().invalidate();
-                    options.put("messaggio", "Logout effettuato!");
+                    for (Cookie cookie : request.getCookies()) {
+                        cookie.setValue("");
+                        cookie.setMaxAge(0);
+                        cookie.setPath("/");
+                        response.addCookie(cookie);
+                    }
+                    //options.put("messaggio", "Logout effettuato!");
+                    getServletContext()
+                    .getRequestDispatcher("/index.html")
+                    .forward(request, response);
                     //response.sendRedirect(getServletContext().getContextPath() + "/Login");
                     break;
             }
