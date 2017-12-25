@@ -17,9 +17,8 @@ public class BeniDiConsumo extends Offerte{
 	 * @param giudizio
 	 */
 	public BeniDiConsumo(int id, double prezzo,String img,String descrizione,int daVendere,String fornitore, int giudizio) {
-		super(id, prezzo,img);
+		super(id, prezzo,img,descrizione);
 		this.daVendere = daVendere;
-		this.descrizione = descrizione;
 		this.fornitore = fornitore;
 		this.giudizio = giudizio;
 	}
@@ -38,12 +37,7 @@ public class BeniDiConsumo extends Offerte{
 		return giudizio;
 	}
 
-	/**
-	 * @return descrizione
-	 */
-	public String getDescrizione() {
-		return descrizione;
-	}
+	
 
 	/**
 	 * @return prodottiDaVendere
@@ -82,7 +76,7 @@ public class BeniDiConsumo extends Offerte{
 	 * Sovrascrive il metodo toString() di Offerte
 	 */
 	public String toString(){
-		return super.toString() + " [Disponibilita: " + daVendere +"]" + " [Tipologia: " + descrizione+ "]" + " [Fornitore: " + fornitore +"]"+ " [Feedback: "+ giudizio +"]";
+		return super.toString() + " [Disponibilita: " + daVendere +"]" + " [Fornitore: " + fornitore +"]"+ " [Feedback: "+ giudizio +"]";
 	}
 
 	/**
@@ -95,7 +89,7 @@ public class BeniDiConsumo extends Offerte{
 			return false;
 		}
 		b = (BeniDiConsumo) otherObject;
-		return daVendere == b.getDaVendere() && descrizione.equalsIgnoreCase(b.getDescrizione()) && giudizio == b.getGiudizio() && fornitore.equalsIgnoreCase(getFornitore());
+		return daVendere == b.getDaVendere()  && giudizio == b.getGiudizio() && fornitore.equalsIgnoreCase(getFornitore());
 	}
 
 	/**
@@ -111,6 +105,6 @@ public class BeniDiConsumo extends Offerte{
 	}
 
 	//Variabili
-	private String descrizione,fornitore;
+	private String fornitore;
 	private int daVendere,giudizio;
 }

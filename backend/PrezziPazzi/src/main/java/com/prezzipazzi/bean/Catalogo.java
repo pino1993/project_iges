@@ -19,13 +19,13 @@ public class Catalogo {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public Catalogo(boolean load) throws FileNotFoundException, IOException, ClassNotFoundException {
+	public Catalogo(){
 		id = 1;
 		prodotti = new ArrayList<Offerte>();
 		
-		if(load == true) {
-			prodotti = carica();
-		}
+//		if(load == true) {
+//			prodotti = carica();
+//		}
 	}
 
 	/**
@@ -166,26 +166,26 @@ public class Catalogo {
 	 * @throws IOException
 	 * @throws ClassNotFoundException
 	 */
-	public ArrayList<Offerte> carica () throws FileNotFoundException, IOException, ClassNotFoundException {
-		
-		ObjectInputStream in = new ObjectInputStream(new FileInputStream("catalogo.dat"));
-		Offerte u;
-		
-		// Array da ritornare con gli oggetti del file
-		ArrayList<Offerte> catalogo = new ArrayList<Offerte>();
-		
-		//Continua fino a quando non cattura EOFException ed interrompe il ciclo
-		while(true) { 
-			try {
-				u = (Offerte) in.readObject();
-			}catch(EOFException e){
-				break;
-			}
-			catalogo.add(u);
-		}
-		in.close();
-		return catalogo;
-	}
+//	public ArrayList<Offerte> carica () throws FileNotFoundException, IOException, ClassNotFoundException {
+//		
+//		ObjectInputStream in = new ObjectInputStream(new FileInputStream("catalogo.dat"));
+//		Offerte u;
+//		
+//		// Array da ritornare con gli oggetti del file
+//		ArrayList<Offerte> catalogo = new ArrayList<Offerte>();
+//		
+//		//Continua fino a quando non cattura EOFException ed interrompe il ciclo
+//		while(true) { 
+//			try {
+//				u = (Offerte) in.readObject();
+//			}catch(EOFException e){
+//				break;
+//			}
+//			catalogo.add(u);
+//		}
+//		in.close();
+//		return catalogo;
+//	}
 	
 	//Variabili
 	private ArrayList<Offerte> prodotti;

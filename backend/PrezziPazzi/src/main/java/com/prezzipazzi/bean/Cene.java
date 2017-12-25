@@ -19,10 +19,9 @@ public class Cene extends Offerte  {
 	 * @param scadenza
 	 * @param daVendere
 	 */
-	public Cene(int id, double prezzo, String img,String ristorante,String descrizione,String luogo,GregorianCalendar scadenza,int daVendere) {
-		super(id, prezzo,img);
+	public Cene(int id, double prezzo, String img,String descrizione,String ristorante,String luogo,GregorianCalendar scadenza,int daVendere) {
+		super(id, prezzo,img,descrizione);
 		this.daVendere = daVendere;
-		this.descrizione = descrizione;
 		this.luogo = luogo;
 		this.ristorante = ristorante;
 		this.scadenza = scadenza;
@@ -49,12 +48,6 @@ public class Cene extends Offerte  {
 	 */
 	public String getLuogo() {
 		return luogo;
-	}
-	/**
-	 * @return descrizione
-	 */
-	public String getDescrizione() {
-		return descrizione;
 	}
 	/**
 	 * @return prodottiDaVendere
@@ -85,7 +78,7 @@ public class Cene extends Offerte  {
 		int giornoS = scadenza.get(Calendar.DAY_OF_MONTH);
 		int meseS = scadenza.get(Calendar.MONTH) + 1;
 		int annoS = scadenza.get(Calendar.YEAR);
-		return super.toString() + " [Ristorante: " + ristorante + "]" + " [Luogo: " + luogo +"]" + " [Disponibilita: " + daVendere +"]"+ " [Scadenza: " + giornoS + "/" + meseS + "/" + annoS + "]" +"\n" + "Menu: "+ descrizione;
+		return super.toString() + " [Ristorante: " + ristorante + "]" + " [Luogo: " + luogo +"]" + " [Disponibilita: " + daVendere +"]"+ " [Scadenza: " + giornoS + "/" + meseS + "/" + annoS + "]" +"\n";
 	}
 
 	/**
@@ -100,7 +93,7 @@ public class Cene extends Offerte  {
 		}
 
 		c = (Cene) otherObject;
-		return ristorante.equalsIgnoreCase(c.getRistorante()) && luogo.equalsIgnoreCase(c.getLuogo()) && descrizione.equalsIgnoreCase(c.getDescrizione()) && scadenza == c.getScadenza() && daVendere == c.getDaVendere(); 
+		return ristorante.equalsIgnoreCase(c.getRistorante()) && luogo.equalsIgnoreCase(c.getLuogo()) && scadenza == c.getScadenza() && daVendere == c.getDaVendere(); 
 	}
 	/**
 	 * Sovrascrive il metodo clone() di Offerte
@@ -114,7 +107,7 @@ public class Cene extends Offerte  {
 	}
 
 	//Variabili
-	private String ristorante,luogo,descrizione;
+	private String ristorante,luogo;
 	private int daVendere;
 	private GregorianCalendar scadenza;
 

@@ -17,8 +17,8 @@ public class Vacanze extends Offerte{
 	 * @param p
 	 * @param s
 	 */
-	public Vacanze(int id, double prezzo,String img,String l,GregorianCalendar p,GregorianCalendar s) {
-		super(id, prezzo,img);
+	public Vacanze(int id, double prezzo,String img,String descrizione,String l,GregorianCalendar p,GregorianCalendar s) {
+		super(id, prezzo,img,descrizione);
 		localita = l;
 		partenza = p;
 		scadenza = s;

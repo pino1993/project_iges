@@ -7,10 +7,13 @@ package com.prezzipazzi.autenticazione;
 
 import com.google.gson.Gson;
 import com.prezzipazzi.bean.Admin;
+import com.prezzipazzi.bean.Catalogo;
+import com.prezzipazzi.bean.Offerte;
 import com.prezzipazzi.bean.TipoUtente;
 import com.prezzipazzi.bean.User;
 import com.prezzipazzi.bean.Utente;
 import com.prezzipazzi.manager.ManagerAutenticazione;
+import com.prezzipazzi.manager.ManagmentOfferte;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Date;
@@ -80,10 +83,27 @@ public class AutenticazioneServlet extends HttpServlet {
                         
                         response.addCookie(cookieMail);
                         response.addCookie(cookiePass);
-                        System.out.println("Cookie settati");
+                        //System.out.println("Cookie settati");
                     }
                    
 //                  options.put("messaggio", "Login effettuato!");
+                    
+                     
+                    ManagmentOfferte mOff = new ManagmentOfferte();
+                    
+                    /*
+                    
+                    Modificare la query allOffers per far restituire un arraylist delle offerte disponibili
+                    
+                    Inserire la query per avere il catalogo anche nella parte di autologin in index.html
+                    
+                    
+                    */
+                    
+                    Catalogo catalogo = mOff.getAllOffers();
+                    
+                    catalogo.stampa();
+                    
                     getServletContext()
                     .getRequestDispatcher("/www/public/html/home.jsp")
                     .forward(request, response);

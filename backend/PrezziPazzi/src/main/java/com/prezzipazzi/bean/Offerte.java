@@ -10,10 +10,11 @@ public abstract class Offerte implements Cloneable,Serializable,Comparable<Offer
 	 * @param id
 	 * @param prezzo
 	 */
-	public Offerte(int id, double prezzo,String Immagine) {	
+	public Offerte(int id, double prezzo,String Immagine,String descrizione) {	
 		this.id = id;
                 this.Immagine = Immagine;
 		this.prezzo = prezzo;
+                this.descrizione = descrizione;
 		prodVenduti = 0;
 	}
 	
@@ -44,6 +45,13 @@ public abstract class Offerte implements Cloneable,Serializable,Comparable<Offer
 	 */
 	public double getPrezzo() {
 		return prezzo;
+	}
+        
+        /**
+	 * @return descrizione
+	 */
+	public String getDescrizione() {
+		return descrizione;
 	}
 	
 	/**
@@ -126,5 +134,5 @@ public abstract class Offerte implements Cloneable,Serializable,Comparable<Offer
 private int id;
 private int prodVenduti;
 private double prezzo;
-private String Immagine;
+private String Immagine,descrizione;
 }

@@ -17,12 +17,10 @@ public class PrestazioniOpera extends Offerte{
 	 * @param giudizio
 	 */
 	public PrestazioniOpera(int id, double prezzo, String img,String localita, String descrizione, String fornitore,int giudizio) {
-		super(id, prezzo,img);
-		this.descrizione = descrizione;
+		super(id, prezzo,img,descrizione);
 		this.fornitore = fornitore;
 		this.giudizio = giudizio;
 		this.localita = localita;
-		this.giudizio = giudizio;
 	}
 	
 	/**
@@ -46,12 +44,6 @@ public class PrestazioniOpera extends Offerte{
 		return localita;
 	}
 	
-	/**
-	 * @return descrizione
-	 */
-	public String getDescrizione() {
-		return descrizione;
-	}
 	
 	/**
 	 * @return fornitore
@@ -75,7 +67,7 @@ public class PrestazioniOpera extends Offerte{
 	 * Sovrascrive toString() di Offerte
 	 */
 	public String toString() {
-		return super.toString() + " [Luogo: " + localita+"]" + " [Descrizione: " + descrizione+"]" + " [Fornitore: " + fornitore+"]" + " [Feedback: " + giudizio + "]";
+		return super.toString() + " [Luogo: " + localita+"]"+ " [Fornitore: " + fornitore+"]" + " [Feedback: " + giudizio + "]";
 	}
 
 	/**
@@ -87,7 +79,7 @@ public class PrestazioniOpera extends Offerte{
 			return false;
 		}
 		p = (PrestazioniOpera) otherObject;
-		return localita.equalsIgnoreCase(p.getLocalita()) && descrizione.equalsIgnoreCase(p.descrizione) && fornitore.equalsIgnoreCase(p.fornitore) && giudizio == p.getGiudizio();
+		return localita.equalsIgnoreCase(p.getLocalita()) && fornitore.equalsIgnoreCase(p.fornitore) && giudizio == p.getGiudizio();
 	}
 	
 	/**
@@ -99,6 +91,6 @@ public class PrestazioniOpera extends Offerte{
 	}
 	
 	//Variabili
-	private String localita,descrizione,fornitore;
+	private String localita,fornitore;
 	private int giudizio;
 }
