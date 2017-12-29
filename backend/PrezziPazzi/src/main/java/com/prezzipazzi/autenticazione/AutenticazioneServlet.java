@@ -91,19 +91,10 @@ public class AutenticazioneServlet extends HttpServlet {
                      
                     ManagmentOfferte mOff = new ManagmentOfferte();
                     
-                    /*
-                    
-                    Modificare la query allOffers per far restituire un arraylist delle offerte disponibili
-                    
-                    Inserire la query per avere il catalogo anche nella parte di autologin in index.html
-                    
-                    
-                    */
-                    
                     Catalogo catalogo = mOff.getAllOffers();
                     
-                    catalogo.stampa();
-                    
+                    //catalogo.stampa();
+                    request.getSession().setAttribute("catalogo", catalogo);
                     getServletContext()
                     .getRequestDispatcher("/www/public/html/home.jsp")
                     .forward(request, response);

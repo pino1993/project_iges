@@ -6,8 +6,12 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.prezzipazzi.bean.Utente"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	 import="com.prezzipazzi.bean.Catalogo"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%
 	Utente utente = (Utente) request.getSession().getAttribute("utente");
+        Catalogo cat = (Catalogo) request.getSession().getAttribute("catalogo");
 %>
 <!DOCTYPE html>
 <html>
@@ -68,52 +72,51 @@
                     <Grid>
                     <form name="purchaseProduct" action="#" method="POST">
                     <input id="valueToPass" type="hidden" name="idProduct" value="" />
-                        <Row>
-                            <Col xs={6} md={5}>
-                                <Thumbnail src="/PrezziPazzi/www/assets/thumbnaildiv.png" alt="242x200">
-                                    <h3>Thumbnail label</h3>
-                                    <p>Description</p>
-                                    <p>
-                                        
-                                        <Button bsStyle="primary" value="prod1" name="bt1" onClick={() => purchase(0)}>Button</Button>&nbsp;
-                                        <Button bsStyle="default">Button</Button>
-                                       
-                                    </p>
-                                </Thumbnail>
-                            </Col>
-                            <Col xs={6} md={5}>
-                                <Thumbnail src="/PrezziPazzi/www/assets/thumbnaildiv.png" alt="242x200">
-                                    <h3>Thumbnail label</h3>
-                                    <p>Description</p>
-                                    <p>
-                                        <Button bsStyle="primary" value="prod2" name="bt2" onClick={() => purchase(0)} >Button</Button>&nbsp;
-                                        <Button bsStyle="default">Button</Button>
-                                    </p>
-                                </Thumbnail>
-                            </Col>
-                        </Row>
-                         <Row>
-                            <Col xs={6} md={5}>
-                                <Thumbnail src="/PrezziPazzi/www/assets/thumbnaildiv.png" alt="242x200">
-                                    <h3>Thumbnail label</h3>
-                                    <p>Description</p>
-                                    <p>
-                                        <Button bsStyle="primary" onClick={() => purchase(3)}>Button</Button>&nbsp;
-                                        <Button bsStyle="default">Button</Button>
-                                    </p>
-                                </Thumbnail>
-                            </Col>
-                            <Col xs={6} md={5}>
-                                <Thumbnail src="/PrezziPazzi/www/assets/thumbnaildiv.png" alt="242x200">
-                                    <h3>Thumbnail label</h3>
-                                    <p>Description</p>
-                                    <p>
-                                        <Button bsStyle="primary" onClick={() => purchase(2)}>Button</Button>&nbsp;
-                                        <Button bsStyle="default">Button</Button>
-                                    </p>
-                                </Thumbnail>
-                            </Col>
-                        </Row>
+                       
+                        <% for(int i = 0; i < cat.size(); i+=1) { %>
+                           
+                                <% if (i < (cat.size()-1)){ %>
+                                    <Row>
+                                        <Col xs={6} md={5}>
+                                            <Thumbnail style={{maxWidth: "450px",height: "420px"}} src="/PrezziPazzi/www/assets/productImage/<%=cat.getItem(i).getImmagine()%>">
+                                            <h3>Thumbnail label <%=cat.getItem(i).getId() %></h3>
+                                            <p><%=cat.getItem(i).getDescrizione()%></p>
+                                            <p>
+                                                <Button bsStyle="primary" onClick={() => purchase(<%=cat.getItem(i).getId()%>)}>Acquista</Button>&nbsp;
+                                                <Button bsStyle="default">Dettagli</Button>
+                                            </p>
+                                            </Thumbnail>
+                                        </Col>
+                                        <Col xs={6} md={5}>
+                                            <% i = i+1;%>
+                                            <Thumbnail style={{maxWidth: "450px",height: "420px"}} src="/PrezziPazzi/www/assets/productImage/<%=cat.getItem(i).getImmagine()%>">
+                                            <h3>Thumbnail label <%=cat.getItem(i).getId() %></h3>
+                                            <p><%=cat.getItem(i).getDescrizione()%></p>
+                                            <p>
+                                                <Button bsStyle="primary" onClick={() => purchase(<%=cat.getItem(i).getId()%>)}>Acquista</Button>&nbsp;
+                                                <Button bsStyle="default">Dettagli</Button>
+                                            </p>
+                                            </Thumbnail>
+                                        </Col>
+                                    </Row>
+                                
+                                <% } else { %>
+                                    
+                                    <Row>
+                                        <Col xs={6} md={5}>
+                                            <Thumbnail style={{maxWidth: "450px",height: "420px"}} src="/PrezziPazzi/www/assets/productImage/<%=cat.getItem(i).getImmagine()%>" alt="242x200">
+                                            <h3>Thumbnail label <%=cat.getItem(i).getId() %></h3>
+                                            <p><%=cat.getItem(i).getDescrizione()%></p>
+                                            <p>
+                                                <Button bsStyle="primary" onClick={() => purchase(<%=cat.getItem(i).getId()%>)}>Acquista</Button>&nbsp;
+                                                <Button bsStyle="default">Dettagli</Button>
+                                            </p>
+                                            </Thumbnail>
+                                        </Col>
+                                    </Row>
+                                <% } %>
+                            
+                        <% } %>
                     </form>    
                     </Grid>
                 </code>
