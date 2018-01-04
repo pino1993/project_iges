@@ -15,6 +15,7 @@ import org.dbunit.DBTestCase;
 import org.dbunit.IDatabaseTester;
 import org.dbunit.JdbcDatabaseTester;
 import org.dbunit.PropertiesBasedJdbcDatabaseTester;
+import org.dbunit.database.IDatabaseConnection;
 import org.dbunit.dataset.DataSetException;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.ITable;
@@ -50,13 +51,11 @@ public class DbUnit extends DBTestCase {
 	public void testById() throws DataSetException, MalformedURLException, Exception {
                  // Fetch database data after executing your code
         IDataSet databaseDataSet = null;
+        IDatabaseConnection connection = getConnection();
        
-            try {
-                databaseDataSet = getConnection().createDataSet();
+        databaseDataSet = connection.createDataSet();
                 
-            } catch (Exception ex) {
-                Logger.getLogger(DbUnit.class.getName()).log(Level.SEVERE, null, ex);
-            }
+           
         ITable actualTable = databaseDataSet.getTable("utenti");
         String emailActual = (String) actualTable.getValue(0, "Email_Utente");
         
@@ -67,7 +66,15 @@ public class DbUnit extends DBTestCase {
         String emailExpected = (String) expectedTable.getValue(0, "Email_Utente");
         // Assert actual database table match expected table
         //Assertion.assertEquals(expectedTable, actualTable);
-            assertEquals(emailExpected, emailActual);
+        assertEquals(emailExpected, emailActual);
+        try
+        {
+            DatabaseOperation.CLEAN_INSERT.execute(connection, databaseDataSet);
+        }
+        finally
+        {
+            connection.close();
+        }
 	}
 
 }
