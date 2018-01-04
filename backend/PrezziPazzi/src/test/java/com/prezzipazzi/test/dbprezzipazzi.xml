@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.7.6
+- https://www.phpmyadmin.net
+-
+- Host: localhost
+- Creato il: Gen 04, 2018 alle 11:51
+- Versione del server: 10.1.29-MariaDB
+- Versione PHP: 7.1.12
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="dbprezzipazzi" collation="utf8_general_ci" charset="utf8">
+            <pma:table name="admin">
+                CREATE TABLE `admin` (
+                  `Nofferte` int(11) NOT NULL,
+                  `Email_Admin` varchar(45) NOT NULL,
+                  `Password` varchar(45) NOT NULL,
+                  `Nome_Fornitore` varchar(45) DEFAULT NULL,
+                  `Nome` varchar(45) NOT NULL,
+                  `Cognome` varchar(45) NOT NULL,
+                  PRIMARY KEY (`Email_Admin`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="offerte">
+                CREATE TABLE `offerte` (
+                  `Id_Offerte` int(11) NOT NULL AUTO_INCREMENT,
+                  `Descrizione` varchar(45) NOT NULL,
+                  `Giudizio` varchar(45) DEFAULT NULL,
+                  `Località` varchar(45) DEFAULT NULL,
+                  `Data_Partenza` datetime DEFAULT NULL,
+                  `Scadenza` datetime DEFAULT NULL,
+                  `Tipo` varchar(45) DEFAULT NULL,
+                  `Prezzo` int(11) NOT NULL,
+                  `Prodotti_Venduti` int(11) DEFAULT NULL,
+                  `Disponibilità` int(11) DEFAULT NULL,
+                  `Immagine` varchar(50) NOT NULL,
+                  `Nome_Fornitore` varchar(45) DEFAULT NULL,
+                  `Ristorante` varchar(45) DEFAULT NULL,
+                  PRIMARY KEY (`Id_Offerte`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="prodotti acquistati">
+                CREATE TABLE `prodotti acquistati` (
+                  `Id_Acquisto` int(11) NOT NULL AUTO_INCREMENT,
+                  `Email_Utente` varchar(45) NOT NULL,
+                  `Id_Offerte` int(11) DEFAULT NULL,
+                  PRIMARY KEY (`Id_Acquisto`),
+                  KEY `Email_Utente_idx` (`Email_Utente`),
+                  KEY `Id_Offerte_idx` (`Id_Offerte`),
+                  CONSTRAINT `Email_Utente` FOREIGN KEY (`Email_Utente`) REFERENCES `utenti` (`Email_Utente`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+                  CONSTRAINT `Id_Offerte` FOREIGN KEY (`Id_Offerte`) REFERENCES `offerte` (`Id_Offerte`) ON DELETE NO ACTION ON UPDATE NO ACTION
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+            <pma:table name="utenti">
+                CREATE TABLE `utenti` (
+                  `Credito` int(11) NOT NULL,
+                  `Email_Utente` varchar(45) NOT NULL,
+                  `Password` varchar(45) NOT NULL,
+                  `Nome` varchar(45) NOT NULL,
+                  `Cognome` varchar(45) NOT NULL,
+                  PRIMARY KEY (`Email_Utente`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'dbprezzipazzi'
+    -->
+    <database name="dbprezzipazzi">
+        <!-- Tabella admin -->
+        <!-- Tabella offerte -->
+        <table name="offerte">
+            <column name="Id_Offerte">12</column>
+            <column name="Descrizione">Cena per 2 napoli</column>
+            <column name="Giudizio">NULL</column>
+            <column name="Località">Napoli</column>
+            <column name="Data_Partenza">2018-01-01 00:00:00</column>
+            <column name="Scadenza">2018-01-31 00:00:00</column>
+            <column name="Tipo">Cene</column>
+            <column name="Prezzo">25</column>
+            <column name="Prodotti_Venduti">NULL</column>
+            <column name="Disponibilità">70</column>
+            <column name="Immagine">cenaNapoli.jpg</column>
+            <column name="Nome_Fornitore">NULL</column>
+            <column name="Ristorante">Zio Michele</column>
+        </table>
+        <!-- Tabella prodotti acquistati -->
+        <!-- Tabella utenti -->
+        <table name="utenti">
+            <column name="Credito">100</column>
+            <column name="Email_Utente">ruggero@email.it</column>
+            <column name="Password">1234</column>
+            <column name="Nome">ruggero</column>
+            <column name="Cognome">tammaro</column>
+        </table>
+    </database>
+</pma_xml_export>

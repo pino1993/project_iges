@@ -21,7 +21,8 @@ public class Database {
         try {
             return ds.getConnection();
         } catch (NullPointerException e) {
-            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DbPrezziPazzi?autoReconnect=true&useSSL=false", "root", "root");
+            //Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DbPrezziPazzi?autoReconnect=true&useSSL=false", "root", "root");
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/DbPrezziPazzi?autoReconnect=true&useSSL=false", "root", "");
             return myConn;
         }
     }
