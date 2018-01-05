@@ -44,7 +44,7 @@ public class DbUnit extends DBTestCase {
 	}
 
 	protected DatabaseOperation getTearDownOperation() throws Exception {
-		return DatabaseOperation.NONE;
+		return DatabaseOperation.DELETE;
 	}
         
 	@Test
@@ -67,14 +67,6 @@ public class DbUnit extends DBTestCase {
         // Assert actual database table match expected table
         //Assertion.assertEquals(expectedTable, actualTable);
         assertEquals(emailExpected, emailActual);
-        try
-        {
-            DatabaseOperation.CLEAN_INSERT.execute(connection, databaseDataSet);
-        }
-        finally
-        {
-            connection.close();
-        }
 	}
 
 }
