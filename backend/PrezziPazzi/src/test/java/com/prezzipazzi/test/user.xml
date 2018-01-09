@@ -3,9 +3,4 @@
     <utenti Email_Utente='a@gmail.com' Nome='Andrea' Cognome='Valenti' Password='1234' Credito='100' />
     <utenti Email_Utente='b@gmail.com' Nome='pino' Cognome='Valenti' Password='1234' Credito='100' />
     <utenti Email_Utente='c@gmail.com' Nome='ruggero' Cognome='Valenti' Password='1234' Credito='100' />
-    <prodotti_acquistati Id_Acquisto='2' Email_Utente='ruggero@email.it' Id_Offerte='12'/>
-    <prodotti_acquistati Id_Acquisto='3' Email_Utente='b@gmail.com' Id_Offerte='12'/>
-    <offerte Località='Roma' Id_Offerte='11' Descrizione='cena per 4 roma' Scadenza='2018-02-22 00:00:00' Tipo='Cena' Prezzo ='25' Immagine='cenaNapoli.jpg'/>
 </dataset>
-
-

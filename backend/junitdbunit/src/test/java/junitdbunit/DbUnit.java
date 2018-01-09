@@ -32,11 +32,11 @@ public class DbUnit extends DBTestCase {
 		System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_DRIVER_CLASS, "com.mysql.jdbc.Driver");
 		System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_CONNECTION_URL, "jdbc:mysql://localhost:3306/dbprezzipazzi");
 		System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_USERNAME, "root");
-		System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "root");
+		System.setProperty(PropertiesBasedJdbcDatabaseTester.DBUNIT_PASSWORD, "");
 	}
 
 	protected IDataSet getDataSet() throws Exception {
-		return new FlatXmlDataSetBuilder().build(new FileInputStream("user.xml"));
+		return new FlatXmlDataSetBuilder().build(new FileInputStream("testFile.xml"));
 	}
 
 	protected DatabaseOperation getSetUpOperation() throws Exception {
@@ -47,9 +47,10 @@ public class DbUnit extends DBTestCase {
 		return DatabaseOperation.DELETE;
 	}
         
-	@Test
-	public void testById() throws DataSetException, MalformedURLException, Exception {
+	@Test 
+	public void testUtenti() throws DataSetException, MalformedURLException, Exception {
                  // Fetch database data after executing your code
+        
         IDataSet databaseDataSet = null;
         IDatabaseConnection connection = getConnection();
        
@@ -63,10 +64,87 @@ public class DbUnit extends DBTestCase {
         // Load expected data from an XML dataset
         IDataSet expectedDataSet = getDataSet();
         ITable expectedTable = expectedDataSet.getTable("utenti");
-        String emailExpected = (String) expectedTable.getValue(0, "Email_Utente");
+        String emailExpected = (String) expectedTable.getValue(1, "Email_Utente");
         // Assert actual database table match expected table
         //Assertion.assertEquals(expectedTable, actualTable);
         assertEquals(emailExpected, emailActual);
-	}
+        assertEquals(actualTable.getValue(1, "Email_Utente"),"b@gmail.com");
+        assertThat(actualTable.getValue(2,"Email_Utente"),is("c@gmail.com"));
+        assertThat(actualTable.getValue(3, "Password"),is("4321"));
+        assertThat(actualTable.getValue(2, "Password"),is("1234"));
 
+        
+	}
+        
+        @Test
+        public void testProdottiAcquistati() throws Exception{
+            IDataSet databaseDataSet = null;
+            IDatabaseConnection connection = getConnection();
+       
+            databaseDataSet = connection.createDataSet();
+                
+           
+            ITable actualTable = databaseDataSet.getTable("prodotti_acquistati");
+            String emailActual = (String) actualTable.getValue(0, "Email_Utente");
+        
+
+            // Load expected data from an XML dataset
+            IDataSet expectedDataSet = getDataSet();
+            ITable expectedTable = expectedDataSet.getTable("prodotti_acquistati");
+            String emailExpected = (String) expectedTable.getValue(0, "Email_Utente");
+         // Assert actual database table match expected table
+         //Assertion.assertEquals(expectedTable, actualTable);
+            assertEquals(emailExpected, emailActual);
+            assertThat(actualTable.getValue(2, "Id_Acquisto"),is(3));
+            assertThat(actualTable.getValue(2, "Id_Offerte"),is(9));
+
+            
+	}
+        @Test 
+	public void testOfferte() throws DataSetException, MalformedURLException, Exception {
+                 // Fetch database data after executing your code
+        
+        IDataSet databaseDataSet = null;
+        IDatabaseConnection connection = getConnection();
+       
+        databaseDataSet = connection.createDataSet();
+                
+           
+        ITable actualTable = databaseDataSet.getTable("offerte");
+        String DesActual =(String) actualTable.getValue(2, "Descrizione");
+        
+
+        // Load expected data from an XML dataset
+        IDataSet expectedDataSet = getDataSet();
+        ITable expectedTable = expectedDataSet.getTable("offerte");
+        String DesExpected =(String) expectedTable.getValue(0, "Descrizione");
+        // Assert actual database table match expected table
+        //Assertion.assertEquals(expectedTable, actualTable);
+        assertEquals(DesExpected, DesActual);
+        assertThat(actualTable.getValue(0, "Località"),is("Caraibi"));
+        assertThat(actualTable.getValue(0, "tipo"),is("Vacanza"));
+	}
+        
+        @Test
+        public void testErrori() throws Exception {
+            // Fetch database data after executing your code
+        
+        IDataSet databaseDataSet = null;
+        IDatabaseConnection connection = getConnection();
+       
+        databaseDataSet = connection.createDataSet();
+        ITable actualTable = databaseDataSet.getTable("prodotti_acquistati");
+        String emailActual =(String) actualTable.getValue(0, "Email_Utente");
+        
+        IDataSet expectedDataSet = getDataSet();
+        ITable expectedTable = expectedDataSet.getTable("utenti");
+        String emailExpected = (String) expectedTable.getValue(0, "Email_Utente");
+        assertEquals(emailExpected,emailActual);
+        ITable actualTable1 = databaseDataSet.getTable("offerte");
+        String typeActual  =(String) actualTable1.getValue(0, "Tipo");
+        ITable expectedTable1 = expectedDataSet.getTable("offerte");
+        String typeExpected = (String) expectedTable.getValue(0, "Tipo");
+        assertEquals(typeExpected,typeActual);
+        
+        }
 }

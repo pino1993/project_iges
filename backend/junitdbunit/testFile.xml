@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <utenti Email_Utente='ruggero@email.it' Nome='Ruggero' Cognome='Tammaro' Password='4321' Credito='1000' />
+    <utenti Email_Utente='a@gmail.com' Nome='Andrea' Cognome='Valenti' Password='1234' Credito='100' />
+    <utenti Email_Utente='b@gmail.com' Nome='pino' Cognome='Valenti' Password='1234' Credito='2000' />
+    <utenti Email_Utente='c@gmail.com' Nome='ruggero' Cognome='Valenti' Password='1234' Credito='100' />
+    <offerte Località='Roma' Id_Offerte='11' Descrizione='cena per 4 Roma' Scadenza='2018-02-22 00:00:00' Tipo='Cena' Prezzo ='25' Immagine='cenaNapoli.jpg'/>
+    <offerte Località='Napoli' Id_Offerte='10' Descrizione='pizza per 2 Napoli' Scadenza='2018-03-21 00:00:00' Tipo='Cena' Prezzo ='15' Immagine='cenaNapoli.jpg'/>
+    <offerte Località='Caraibi' Id_Offerte='9' Descrizione='Vacanza ai caraibi per 2 persone' Scadenza='2018-07-22 00:00:00' Tipo='Vacanza' Prezzo ='1999' Immagine='vacanzaCaraibi.jpg'/>
+    <prodotti_acquistati Id_Acquisto='1' Email_Utente='c@gmail.com' Id_Offerte='11'/>
+    <prodotti_acquistati Id_Acquisto='2' Email_Utente='ruggero@email.it' Id_Offerte='10'/>
+    <prodotti_acquistati Id_Acquisto='3' Email_Utente='b@gmail.com' Id_Offerte='9'/>
+</dataset>
+
