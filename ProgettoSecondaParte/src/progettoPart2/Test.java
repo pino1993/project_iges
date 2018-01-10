@@ -23,7 +23,7 @@ public class Test {
 		/*
 		a.addProdotto(new BeniDiConsumo(a.getId(),100,"Nike Air force 1",30,"FootLocker", 4));
 		
-		a.addProdotto(new Cene(a.getId(),50,"Napoli","\n"+"0) Antipasto a buffet\n1) Spaghetti ai frutti di mare \n2) Orata con patate\n3) Macedonia con Gelato","Bella Napoli",new GregorianCalendar(2014,0,24),10));
+		a.addProdotto(new Cene(a.getId(),50,"Napoli","\n"+"0) Antipasto a buffet\n1) Spaghetti ai frutti di mare \n2) Orata con patate\n3) Macedonia con Gelato","Bella Napoli",new GregorianCalendar(2018,0,24),10));
 		a.addProdotto(new PrestazioniOpera(a.getId(),80, "Cupertino", "Keynote Apple","Apple",5));
 		a.salva();
 		System.out.println("Ecco le offerte scadute: ");

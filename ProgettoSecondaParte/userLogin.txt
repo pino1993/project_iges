@@ -1,6 +1,9 @@
 Andrea
 Barney
-450.0
+5.0
 Gianni
 Genovese
 1345.0
+Ruggero
+Tammaro
+300
