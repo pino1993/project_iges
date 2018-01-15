@@ -3,13 +3,15 @@
     Created on : 11-dic-2017, 11.56.26
     Author     : andrea
 --%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	 import="com.prezzipazzi.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="com.prezzipazzi.bean.Utente"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	 import="com.prezzipazzi.bean.Catalogo"%>
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <%
+        User user = (User) request.getSession().getAttribute("user");
 	Utente utente = (Utente) request.getSession().getAttribute("utente");
         Catalogo cat = (Catalogo) request.getSession().getAttribute("catalogo");
 %>
@@ -136,17 +138,46 @@
                 <a title="Logout <%=utente.getEmail()%>"><Image onClick={() => logout()} style={{height: "60px",marginTop: "-77px"}} src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Circle-icons-profle.svg/512px-Circle-icons-profle.svg.png" responsive circle /></a>
             </Col>
             </Row>
+            <Row className="show-grid">
+            <Col md={4}>
+            <label>Nome : </label><small><%=utente.getNome()%></small>
+            </Col>
+            </Row>
+             <Row className="show-grid">
+            <Col md={4}>
+            <label>Cognome : </label><small> <%=utente.getCognome()%></small>
+            </Col>
+            </Row>
+             <Row className="show-grid">
+            <Col md={4}>
+            <label>e-mail : </label><small> <%=utente.getEmail()%></small>
+            </Col>
+            </Row>
+            <Row className="show-grid">
+            <Col md={4}>
+            <label>Credito residuo: </label><small> <%=user.getCredito()%></small>
+            </Col>
+            </Row>
+             <Row className="show-grid">
+            <Col md={4}>
+           <button type="primary" onClick={() => popo()} class="btn btn-primary">Prodotti acquistati</button>
+            </Col>
+            </Row>
         </Grid>
     </Tab.Pane>
+    
     </Tab.Content>
     </Col>
     </Row>
     </Tab.Container>
             );
-
+    
             ReactDOM.render(gridInstance, document.getElementById("hello"));
         </script>
         <script>
+                  function popo(){
+                      alert("SSSS")
+                  }
                     function purchase(num) {
                         console.log("Purchase ", document.getElementById("valueToPass").value)
                         document.forms[0].action = 'Purchase';

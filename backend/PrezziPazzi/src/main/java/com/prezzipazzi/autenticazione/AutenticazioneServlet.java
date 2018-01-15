@@ -69,6 +69,8 @@ public class AutenticazioneServlet extends HttpServlet {
                         return;
                     }
                     
+                    User user=loginUser(mail,pass);
+                    request.getSession().setAttribute("user", user);
                     request.getSession().setAttribute("utente", utente);
                     request.getSession().setAttribute("tipoUtente", tipo);
                     
@@ -92,7 +94,6 @@ public class AutenticazioneServlet extends HttpServlet {
                     ManagmentOfferte mOff = new ManagmentOfferte();
                     
                     Catalogo catalogo = mOff.getAllOffers();
-                    
                     //catalogo.stampa();
                     request.getSession().setAttribute("catalogo", catalogo);
                     getServletContext()
