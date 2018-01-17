@@ -62,7 +62,7 @@ public class ManagerAutenticazione {
         try {
             conn = Database.getConnessione();
             pstmt = conn.prepareStatement(
-                   "SELECT Email_Utente,Password,Nome,Cognome  FROM utenti WHERE Email_Utente = ? AND Password = ?");
+                   "SELECT Email_Utente,Password,Nome,Cognome,Credito  FROM utenti WHERE Email_Utente = ? AND Password = ?");
 
             pstmt.setString(1, email);
             pstmt.setString(2, password);
@@ -80,8 +80,9 @@ public class ManagerAutenticazione {
 //                pstmt.executeUpdate();
                 String nome = rs.getString("Nome");
 		String cognome = rs.getString("Cognome");
+                double credito = rs.getDouble("Credito");
                 rs.close();
-                return new User(email, null, nome, cognome);
+                return new User(email, null, nome, cognome,credito);
             }
 
         } finally {
