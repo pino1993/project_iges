@@ -14,9 +14,9 @@ public class User extends Utente{
 	 * @param nome
 	 * @param cognome
 	 */
-	public User(String email, String password, String nome, String cognome) {
+	public User(String email, String password, String nome, String cognome,double credito ) {
 		super(email, password, nome, cognome);
-                this.credito = 0;
+                this.credito = credito;
 	}
 	
 	public User(){

@@ -90,6 +90,20 @@ public class Catalogo {
 		else
 			return null;
 	}
+        
+        
+        public Offerte getItemFromId(int id) {
+            Offerte o;
+            for (int i = 0; i < prodotti.size(); i++) {
+                o = prodotti.get(i);
+                if(o.getId() == id)
+                    return o;
+            }
+            
+            return null;
+	}
+        
+        
 
 	/**
 	 * Metodo che scambia due offerte per effettuare un riordinamento
