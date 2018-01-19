@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+package com.prezzipazzi.test;
+import com.prezzipazzi.*;
+import com.prezzipazzi.autenticazione.AutenticazioneServlet;
+import com.prezzipazzi.bean.TipoUtente;
+import com.prezzipazzi.bean.User;
+import com.prezzipazzi.bean.Utente;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,9 +20,10 @@ import static org.junit.Assert.*;
  *
  * @author ruggerotammaro
  */
-public class NewEmptyJUnitTest {
-    
-    public NewEmptyJUnitTest() {
+public class JUnitTest {
+
+    public JUnitTest() {
+        
     }
     
     @BeforeClass
@@ -39,6 +45,14 @@ public class NewEmptyJUnitTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    // @Test
-    // public void hello() {}
+    @Test
+    public void TestUtente() {
+        User u = new User("test@email.it","test","test","test",0);
+		assertEquals(0.0,u.getCredito(),0);
+		//eliminare user dal file userLogin prima di eseguire
+		//assertEquals(1,u.login("no", "nuovo", "user"));
+		//ritorna 0 se l'utente già esiste
+		//assertEquals(0,u.login("no", "Andrea", "Barney"));
+		//assertEquals("Saldo insufficiente",u.acquista(8, a.getCat(), 1));
+    }
 }
