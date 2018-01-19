@@ -47,7 +47,7 @@ public class JUnitTest {
     //
     @Test
     public void TestUtente() {
-        User u = new User("test@prezzipazzi.com","1234","Test","test");
+        User u = new User("test@email.it","test","test","test",0);
 		assertEquals(0.0,u.getCredito(),0);
 		//eliminare user dal file userLogin prima di eseguire
 		//assertEquals(1,u.login("no", "nuovo", "user"));
