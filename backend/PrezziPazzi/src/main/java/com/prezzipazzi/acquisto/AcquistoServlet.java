@@ -9,6 +9,7 @@ import com.prezzipazzi.bean.Catalogo;
 import com.prezzipazzi.bean.Offerte;
 import com.prezzipazzi.bean.User;
 import com.prezzipazzi.bean.Utente;
+import com.prezzipazzi.bean.Vacanze;
 import com.prezzipazzi.manager.ManagerAcquisto;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -67,17 +68,25 @@ public class AcquistoServlet extends HttpServlet {
                         if(u.getCredito() >= o.getPrezzo()){//credito disponibile
                             ManagerAcquisto mAcq = new ManagerAcquisto();
                             double residuo = (u.getCredito() - o.getPrezzo());
-                            mAcq.purchase(u.getEmail(), o.getId(),residuo);
+                            if(!(o instanceof Vacanze)){//se non è una vacanza devo scalare le quantità
+                                mAcq.purchase(u.getEmail(), o.getId(),residuo,true);
+                            }
+                            else{// è una vacanza
+                                mAcq.purchase(u.getEmail(), o.getId(),residuo,false);
+                            }
+                            request.setAttribute("message", "Grazie per aver acquisto su PREZZI PAZZI. Consulta la tua area per visionare la tua cronologia aggiornata!!!");
+                            request.setAttribute("type", "success");
                         }
                         else{//credito inssuficiente
-                                
+                            
+                            request.setAttribute("message", "Credito insufficiente per Acquistare il prodotto selezionato!!!");
+                            request.setAttribute("type", "error");
                         }
                     }
                     else{//offerta non acquistabile
-                        
+                        request.setAttribute("message", "Siamo spiacenti, ma l'offerta selezionata non è acquistabile. Riprova più tardi");
+                        request.setAttribute("type", "error");
                     }
-                    
-                    
                     
                     getServletContext()
                     .getRequestDispatcher("/www/public/html/purchase.jsp")

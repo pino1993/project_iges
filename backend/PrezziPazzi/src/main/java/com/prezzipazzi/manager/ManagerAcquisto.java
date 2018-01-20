@@ -18,7 +18,7 @@ import java.sql.SQLException;
  */
 public class ManagerAcquisto {
 
-    public synchronized boolean purchase(String email, Integer idofferta, double creditoResiduo)
+    public synchronized boolean purchase(String email, Integer idofferta, double creditoResiduo,boolean flagScalaQuantità)
             throws SQLException, AuthException {
 
         Connection conn = null;
@@ -33,10 +33,7 @@ public class ManagerAcquisto {
                     "UPDATE utenti SET Credito = ? WHERE Email_Utente = ?");
             pstmt.setDouble(1, creditoResiduo);
             pstmt.setString(2, email);
-            
-            
             int rs = pstmt.executeUpdate();
-            
             System.out.println("Result set"+rs);
             
             String insertTableSQL = "INSERT INTO prodotti_acquistati"
@@ -49,6 +46,13 @@ public class ManagerAcquisto {
             pstmt.executeUpdate();
             
             
+            if(flagScalaQuantità){//devo scalare il residuo
+                pstmt = conn.prepareStatement(
+                    "UPDATE offerte SET Disponibilità = Disponibilità -1  WHERE Id_Offerte = ?");
+                pstmt.setInt(1, idofferta);
+                rs = pstmt.executeUpdate();
+                System.out.println("Result set quantità"+rs);
+            }
           
 
             return true;
