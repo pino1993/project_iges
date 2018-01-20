@@ -79,22 +79,20 @@
                                     <Row>
                                         <Col xs={6} md={5}>
                                             <Thumbnail style={{maxWidth: "450px",height: "420px"}} src="/PrezziPazzi/www/assets/productImage/<%=cat.getItem(i).getImmagine()%>">
-                                            <h3>Thumbnail label <%=cat.getItem(i).getId() %></h3>
-                                            <p><%=cat.getItem(i).getDescrizione()%></p>
+                                            <h3><%=cat.getItem(i).getDescrizione()%></h3>
                                             <p>
                                                 <Button bsStyle="primary" onClick={() => purchase(<%=cat.getItem(i).getId()%>)}>Acquista</Button>&nbsp;
-                                                <Button bsStyle="default">Dettagli</Button>
+                                               
                                             </p>
                                             </Thumbnail>
                                         </Col>
                                         <Col xs={6} md={5}>
                                             <% i = i+1;%>
                                             <Thumbnail style={{maxWidth: "450px",height: "420px"}} src="/PrezziPazzi/www/assets/productImage/<%=cat.getItem(i).getImmagine()%>">
-                                            <h3>Thumbnail label <%=cat.getItem(i).getId() %></h3>
-                                            <p><%=cat.getItem(i).getDescrizione()%></p>
+                                            <h3><%=cat.getItem(i).getDescrizione()%></h3>
                                             <p>
                                                 <Button bsStyle="primary" onClick={() => purchase(<%=cat.getItem(i).getId()%>)}>Acquista</Button>&nbsp;
-                                                <Button bsStyle="default">Dettagli</Button>
+                                                
                                             </p>
                                             </Thumbnail>
                                         </Col>
@@ -105,11 +103,10 @@
                                     <Row>
                                         <Col xs={6} md={5}>
                                             <Thumbnail style={{maxWidth: "450px",height: "420px"}} src="/PrezziPazzi/www/assets/productImage/<%=cat.getItem(i).getImmagine()%>" alt="242x200">
-                                            <h3>Thumbnail label <%=cat.getItem(i).getId() %></h3>
-                                            <p><%=cat.getItem(i).getDescrizione()%></p>
+                                            <h3><%=cat.getItem(i).getDescrizione()%></h3>
                                             <p>
                                                 <Button bsStyle="primary" onClick={() => purchase(<%=cat.getItem(i).getId()%>)}>Acquista</Button>&nbsp;
-                                                <Button bsStyle="default">Dettagli</Button>
+                                               
                                             </p>
                                             </Thumbnail>
                                         </Col>
