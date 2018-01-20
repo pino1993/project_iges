@@ -1,4 +1,4 @@
-package com.prezzipazzi.bean;
+ package com.prezzipazzi.bean;
 
 import java.util.ArrayList;
 

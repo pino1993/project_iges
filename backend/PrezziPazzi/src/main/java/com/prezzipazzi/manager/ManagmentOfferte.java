@@ -43,11 +43,6 @@ public class ManagmentOfferte {
             }
             
             while (rs.next()) {
-//                id = rs.getString("Id_Offerte");
-//		prezzo = rs.getDouble("Prezzo");
-//                desc = rs.getString("Descrizione");
-//                img = rs.getString("Immagine");
-//                System.out.println("ECCO I RISUILTATI DELLA QUERY : "+id+" e "+prezzo+" descrizione: "+desc+" img: "+img);
               
                GregorianCalendar cal =  new GregorianCalendar();
                GregorianCalendar cal2 =  new GregorianCalendar();
