@@ -44,7 +44,7 @@ public class StoricoServlet extends HttpServlet {
                     mStorico.getStoricoOfferte(idOfferta);
                     
                     getServletContext()
-                    .getRequestDispatcher("/www/public/html/purchase.jsp")
+                    .getRequestDispatcher("/www/public/html/home.jsp")
                     .forward(request, response);
                     break;
             }

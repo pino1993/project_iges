@@ -159,7 +159,7 @@
             <Col md={4}>
              <form name="storico" action="" method="POST">
               <input id="valore" type="hidden" name="idOfferta" value="" />
-           <button type="primary" onClick={() => popo(<%=cat.getItem(1).getId()%>)} class="btn btn-primary">Prodotti acquistati</button>
+           <button type="primary" onClick={() => popo(<%=cat.getItem(0).getId()%>)} class="btn btn-primary">Prodotti acquistati</button>
            </form>
             </Col>
             </Row>
