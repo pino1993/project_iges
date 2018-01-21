@@ -32,7 +32,7 @@ public class Viewer {
 		
 		//frame al centro dello schermo
 		Dimension screenSize = Toolkit.getDefaultToolkit ( ).getScreenSize ( );
-		frame.setLocation ((screenSize.width/2)-(frame.getWidth( )/2) , (screenSize.height/2)-(frame.getHeight( )/2));
+		frame.setLocation ((screenSize.width/4)-(frame.getWidth( )/4) , (screenSize.height/4)-(frame.getHeight( )/4));
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}

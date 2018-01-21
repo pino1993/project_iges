@@ -57,48 +57,54 @@ public class AutenticazioneServlet extends HttpServlet {
                     String pass = request.getParameter("password");
                     TipoUtente tipo = controllaTipo(mail);
                     Utente utente = null;
-                    if (tipo == TipoUtente.ADMIN) {
-                        utente = loginAdmin(mail, pass);
-
-                    } else if (tipo == TipoUtente.USER) {
-                        utente = loginUser(mail, pass);
-
-                    } else {
-                        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-                        response.getWriter().write("Email non valida!");
-                        return;
+                   
+                    switch (tipo) {
+                        case ADMIN:
+                            System.out.println("com.prezzipazzi.autenticazione.AutenticazioneServlet.doPost()");
+                            utente = loginAdmin(mail, pass);
+                            System.out.println("utente"+utente);
+                            User uAdmin = new User(mail, pass, utente.getNome(), utente.getCognome(),0);
+                            request.getSession().setAttribute("user", uAdmin);
+                            break;
+                        case USER:
+                            utente = loginUser(mail, pass);
+                            User user = loginUser(mail, pass);
+                            request.getSession().setAttribute("user", user);
+                            break;
+                        default:
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.getWriter().write("Email non valida!");
+                            return;
                     }
                     
-                    User user=loginUser(mail,pass);
-                    request.getSession().setAttribute("user", user);
+                    
+                    
                     request.getSession().setAttribute("utente", utente);
                     request.getSession().setAttribute("tipoUtente", tipo);
-                    
-                    if(request.getParameter("rememberMe") != null && request.getParameter("rememberMe").equals("on") ){
+
+                    if (request.getParameter("rememberMe") != null && request.getParameter("rememberMe").equals("on")) {
                         Date now = new Date();
                         String timestamp = now.toString();
-                        Cookie cookieMail = new Cookie ("usernamePrezziPazzi",mail);
+                        Cookie cookieMail = new Cookie("usernamePrezziPazzi", mail);
                         cookieMail.setMaxAge(365 * 24 * 60 * 60);
-                        
-                        Cookie cookiePass = new Cookie("passwordPrezziPazzi",pass);
+
+                        Cookie cookiePass = new Cookie("passwordPrezziPazzi", pass);
                         cookiePass.setMaxAge(365 * 24 * 60 * 60);
-                        
+
                         response.addCookie(cookieMail);
                         response.addCookie(cookiePass);
                         //System.out.println("Cookie settati");
                     }
-                   
+
 //                  options.put("messaggio", "Login effettuato!");
-                    
-                     
                     ManagmentOfferte mOff = new ManagmentOfferte();
-                    
+
                     Catalogo catalogo = mOff.getAllOffers();
                     //catalogo.stampa();
                     request.getSession().setAttribute("catalogo", catalogo);
                     getServletContext()
-                    .getRequestDispatcher("/www/public/html/home.jsp")
-                    .forward(request, response);
+                            .getRequestDispatcher("/www/public/html/home.jsp")
+                            .forward(request, response);
                     break;
                 case "/Logout":
                     request.getSession().removeAttribute("utente");
@@ -111,8 +117,8 @@ public class AutenticazioneServlet extends HttpServlet {
                     }
                     //options.put("messaggio", "Logout effettuato!");
                     getServletContext()
-                    .getRequestDispatcher("/index.html")
-                    .forward(request, response);
+                            .getRequestDispatcher("/index.html")
+                            .forward(request, response);
                     //response.sendRedirect(getServletContext().getContextPath() + "/Login");
                     break;
             }
