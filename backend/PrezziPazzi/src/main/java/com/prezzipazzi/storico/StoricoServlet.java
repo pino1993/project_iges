@@ -6,7 +6,10 @@
 package com.prezzipazzi.storico;
 
 import com.prezzipazzi.acquisto.AcquistoServlet;
+import com.prezzipazzi.autenticazione.AuthException;
+import com.prezzipazzi.manager.ManagmentStorico;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -33,9 +36,12 @@ public class StoricoServlet extends HttpServlet {
            try {
             switch (request.getServletPath()) {
                 case "/Storico":
-                    String idProduct = request.getParameter("idProduct");
+                    String idOfferta = request.getParameter("idOfferta");
                     
-                    System.out.println("Id product = "+idProduct);
+                    System.out.println("idOfferta = "+idOfferta);
+                    
+                    ManagmentStorico mStorico = new ManagmentStorico();
+                    mStorico.getStoricoOfferte(idOfferta);
                     
                     getServletContext()
                     .getRequestDispatcher("/www/public/html/purchase.jsp")
@@ -44,7 +50,11 @@ public class StoricoServlet extends HttpServlet {
             }
         } catch (IOException ex) {
             Logger.getLogger(AcquistoServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (SQLException ex) {
+             Logger.getLogger(StoricoServlet.class.getName()).log(Level.SEVERE, null, ex);
+         } catch (AuthException ex) {
+             Logger.getLogger(StoricoServlet.class.getName()).log(Level.SEVERE, null, ex);
+         }
          
       
     }

@@ -13,11 +13,15 @@ import com.prezzipazzi.bean.Offerte;
 import com.prezzipazzi.bean.PrestazioniOpera;
 import com.prezzipazzi.bean.Vacanze;
 import com.prezzipazzi.database.Database;
+import com.prezzipazzi.storico.StoricoServlet;
+import static java.lang.System.out;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -59,6 +63,7 @@ public class ManagmentStorico {
                    case "Cene":
                        cal.setTime(rs.getDate("Scadenza"));
                        c.addOfferta(new Cene(rs.getInt("Id_Offerte"),rs.getDouble("Prezzo"),rs.getString("Immagine"),rs.getString("Descrizione"),rs.getString("Ristorante"),rs.getString("Località"),cal,rs.getInt("Disponibilità")));
+                       System.out.println("aaaa"+c.getArray());
                    break;
                    
                    case "PrestazioniOpera":
