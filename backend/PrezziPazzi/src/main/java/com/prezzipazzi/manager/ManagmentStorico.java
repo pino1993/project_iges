@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  */
 public class ManagmentStorico {
     
-     public synchronized Catalogo getStoricoOfferte(String id_offerte)
+     public synchronized void getStoricoOfferte(String idOfferte)
             throws SQLException, AuthException {
 
         Connection conn = null;
@@ -38,20 +38,66 @@ public class ManagmentStorico {
         try {
             conn = Database.getConnessione();
             pstmt = conn.prepareStatement(
-                    "SELECT * FROM offerte WHERE Id_Offerte= ?");
+                    "SELECT Id_Offerte FROM prodotti_acquistati WHERE Id_Offerte= ?");
 
-            pstmt.setString(1,id_offerte);
+            pstmt.setString(1,idOfferte);
             ResultSet rs = pstmt.executeQuery();
-            String id,img,desc;
-            Double prezzo;
-            Offerte off;
-            Catalogo c = new Catalogo();
             
+ 
+            String offers="";
+           
             if (rs == null) {
                 throw new AuthException("Nessuna Offerta");
             }
-            
             while (rs.next()) {
+              
+                 offers = rs.getString("Id_Offerte");
+                 
+              
+               
+            }
+          getOffers(offers);
+            rs.close();
+           
+
+        } finally {
+            try {
+                if (pstmt != null) {
+                    pstmt.close();
+                }
+            } finally {
+                if (conn != null) {
+                    conn.close();
+                }
+            }
+        }
+    }
+
+    private synchronized Catalogo getOffers(String offers) 
+        throws SQLException, AuthException { 
+        
+         Connection conn = null;
+        PreparedStatement pstmt = null;
+
+        try {
+            conn = Database.getConnessione();
+            pstmt = conn.prepareStatement(
+                    "SELECT * FROM offerte WHERE Id_Offerte= ?");
+
+            pstmt.setString(1,offers);
+            ResultSet rs = pstmt.executeQuery();
+            
+            String id,img,desc;
+            Double prezzo;
+            Offerte off;
+            Catalogo cat;
+            Catalogo c = new Catalogo();
+           
+           
+            if (rs == null) {
+                throw new AuthException("Nessuna Offerta");
+            }
+               while (rs.next()) {
               
                GregorianCalendar cal =  new GregorianCalendar();
                GregorianCalendar cal2 =  new GregorianCalendar();
@@ -63,7 +109,6 @@ public class ManagmentStorico {
                    case "Cene":
                        cal.setTime(rs.getDate("Scadenza"));
                        c.addOfferta(new Cene(rs.getInt("Id_Offerte"),rs.getDouble("Prezzo"),rs.getString("Immagine"),rs.getString("Descrizione"),rs.getString("Ristorante"),rs.getString("Località"),cal,rs.getInt("Disponibilità")));
-                       System.out.println("aaaa"+c.getArray());
                    break;
                    
                    case "PrestazioniOpera":
@@ -76,14 +121,12 @@ public class ManagmentStorico {
                        cal2.setTime(rs.getDate("Data_Partenza"));
                        c.addOfferta(new Vacanze(rs.getInt("Id_Offerte"),rs.getDouble("Prezzo"),rs.getString("Immagine"),rs.getString("Descrizione"),rs.getString("Località"),cal,cal2));
                    break;
-                   
-                   
-                    
+                 
                }
                
             }
-            
             rs.close();
+            System.out.println("Eccosono    uiiiiiiii"+c.getArray());
             return c; 
 
         } finally {
@@ -98,6 +141,7 @@ public class ManagmentStorico {
             }
         }
     }
+
     
 }
 

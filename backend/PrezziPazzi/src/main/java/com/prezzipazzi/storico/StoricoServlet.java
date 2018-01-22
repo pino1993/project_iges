@@ -38,7 +38,7 @@ public class StoricoServlet extends HttpServlet {
                 case "/Storico":
                     String idOfferta = request.getParameter("idOfferta");
                     
-                    System.out.println("idOfferta = "+idOfferta);
+                    System.out.println(idOfferta);
                     
                     ManagmentStorico mStorico = new ManagmentStorico();
                     mStorico.getStoricoOfferte(idOfferta);
