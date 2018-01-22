@@ -65,7 +65,7 @@ public class Sistema extends JFrame {
 		areaRiservata();
 		setTitoloMain();
 		areaUtente();
-		setSize(665,700);
+		setSize(800,800);
 		setResizable(false);
 	}
 
