@@ -47,12 +47,12 @@ public class JUnitTest {
     //
     @Test
     public void TestUtente() {
-        User u = new User("test@email.it","test","test","test",0);
+        User u = new User("test@email.it","test","testn","testc",0);
 		assertEquals(0.0,u.getCredito(),0);
-		//eliminare user dal file userLogin prima di eseguire
-		//assertEquals(1,u.login("no", "nuovo", "user"));
-		//ritorna 0 se l'utente già esiste
-		//assertEquals(0,u.login("no", "Andrea", "Barney"));
-		//assertEquals("Saldo insufficiente",u.acquista(8, a.getCat(), 1));
+		assertEquals("testc",u.getCognome());
+                assertEquals("test@email.it",u.getEmail());
+                assertEquals("testn",u.getNome());
+                assertEquals("test",u.getPassword());
+                
     }
 }

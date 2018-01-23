@@ -38,13 +38,13 @@ public class StoricoServlet extends HttpServlet {
                 case "/Storico":
                     String idOfferta = request.getParameter("idOfferta");
                     
-                    System.out.println("idOfferta = "+idOfferta);
+                    System.out.println(idOfferta);
                     
                     ManagmentStorico mStorico = new ManagmentStorico();
                     mStorico.getStoricoOfferte(idOfferta);
                     
                     getServletContext()
-                    .getRequestDispatcher("/www/public/html/purchase.jsp")
+                    .getRequestDispatcher("/www/public/html/home.jsp")
                     .forward(request, response);
                     break;
             }
