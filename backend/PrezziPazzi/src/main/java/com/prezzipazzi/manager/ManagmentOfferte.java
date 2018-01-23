@@ -37,11 +37,10 @@ public class ManagmentOfferte {
             Double prezzo;
             Offerte off;
             Catalogo c = new Catalogo();
-            
-            if (rs == null) {
+            if (!rs.next()) {
                 throw new AuthException("Nessuna Offerta");
             }
-            
+           
             while (rs.next()) {
               
                GregorianCalendar cal =  new GregorianCalendar();
