@@ -37,7 +37,7 @@ public class ManagmentOfferte {
             Double prezzo;
             Offerte off;
             Catalogo c = new Catalogo();
-            if (!rs.next()) {
+            if (!rs.isBeforeFirst()) {
                 throw new AuthException("Nessuna Offerta");
             }
            
