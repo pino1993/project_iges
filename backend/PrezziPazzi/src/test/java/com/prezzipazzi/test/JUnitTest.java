@@ -6,9 +6,19 @@
 package com.prezzipazzi.test;
 import com.prezzipazzi.*;
 import com.prezzipazzi.autenticazione.AutenticazioneServlet;
+import com.prezzipazzi.bean.Admin;
+import com.prezzipazzi.bean.BeniDiConsumo;
+import com.prezzipazzi.bean.Catalogo;
+import com.prezzipazzi.bean.Cene;
+import com.prezzipazzi.bean.PrestazioniOpera;
 import com.prezzipazzi.bean.TipoUtente;
 import com.prezzipazzi.bean.User;
 import com.prezzipazzi.bean.Utente;
+import com.prezzipazzi.bean.Vacanze;
+import java.io.EOFException;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.GregorianCalendar;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -55,4 +65,48 @@ public class JUnitTest {
                 assertEquals("test",u.getPassword());
                 
     }
+    @Test
+    public void TestBeni(){
+       BeniDiConsumo b=new BeniDiConsumo(1, 100,"prova.jpg", "Scarpe nike", 10, "Amazon", 4);
+		assertEquals(b.getFornitore(),"Amazon");
+		assertEquals(b.getGiudizio(),4);
+		assertEquals(b.getDescrizione(),"Scarpe nike");
+		assertEquals(b.getDaVendere(),10);
+		assertEquals(b.eAcquistabile(),true);
+		assertEquals(b.sconti(),false);	
+		Catalogo c=new Catalogo();
+		c.addOfferta(b);
+		assertEquals(c.size(),1);
+		assertEquals(c.dammiId(1),2);
+		System.out.println(b.toString());
+    }
+    @Test
+	public void testCena() throws Exception{
+		
+		Cene c=new Cene(13, 200,"cenaNapoli.jpg", "cena per 2 Salerno","Zio Michele", "Salerno", new GregorianCalendar(2018,0,24), 10);
+		assertEquals(c.getDaVendere(),10);
+		assertEquals(c.getLuogo(),"Salerno");
+		assertEquals(c.getRistorante(),"Zio Michele");
+		System.out.println(c.toString());
+	}
+        @Test
+	public void testPrestazioniOpera() throws Exception{
+		PrestazioniOpera p=new PrestazioniOpera(23,80,"spettacolo.jpg", "Napoli", "Spettacolo di Pinocchio","Compagnia Teatrale",5);
+		assertEquals(p.eAcquistabile(),true);
+		assertEquals(p.getFornitore(),"Compagnia Teatrale");
+		assertEquals(p.getLocalita(),"Napoli");
+		assertEquals(p.getProdVenduti(),0);
+		assertEquals(p.sconti(),false);
+		System.out.println(p.toString());	
+	}
+	@Test
+	public void testVacanze(){
+		Vacanze v= new Vacanze(34, 2000,"Caraibi.jpg", "Vacanza per 2 ai Caraibi","Caraibi",new GregorianCalendar(2018,3,24) , new GregorianCalendar(2018,2,24));
+		assertEquals(v.eAcquistabile(),true);
+		assertEquals(v.getLocalita(),"Caraibi");
+		assertEquals(v.getPartenza(),new GregorianCalendar(2018,3,24));
+		System.out.println(v.toString());
+	}
+
 }
+

@@ -76,11 +76,11 @@ public class TestJunit {
 	}
 	@After
 	public void rimuovi() throws EOFException, FileNotFoundException, ClassNotFoundException, IOException, Exception{
-		a=new Admin();
+		/*a=new Admin();
 		a.rmvProdotto(1);
 		a.rmvProdotto(13);
 		a.rmvProdotto(23);
-		a.rmvProdotto(34);
+		a.rmvProdotto(34);*/
 	}
 
 }
