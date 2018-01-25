@@ -111,7 +111,7 @@ public class DbUnit extends DBTestCase {
                 
            
         ITable actualTable = databaseDataSet.getTable("offerte");
-        String DesActual =(String) actualTable.getValue(2, "Descrizione");
+        String DesActual =(String) actualTable.getValue(3, "Descrizione");
         
 
         // Load expected data from an XML dataset
@@ -121,10 +121,10 @@ public class DbUnit extends DBTestCase {
         // Assert actual database table match expected table
         //Assertion.assertEquals(expectedTable, actualTable);
         assertEquals(DesExpected, DesActual);
-        assertThat(actualTable.getValue(0, "Località"),is("Caraibi"));
-        assertThat(actualTable.getValue(0, "tipo"),is("Vacanza"));
+        assertThat(actualTable.getValue(1, "Località"),is("Caraibi"));
+        assertThat(actualTable.getValue(1, "tipo"),is("Vacanza"));
 	}
-        
+        /* vedi se vuoi eliminarlo proprio
         @Test
         public void testErrori() throws Exception {
             // Fetch database data after executing your code
@@ -139,12 +139,13 @@ public class DbUnit extends DBTestCase {
         IDataSet expectedDataSet = getDataSet();
         ITable expectedTable = expectedDataSet.getTable("utenti");
         String emailExpected = (String) expectedTable.getValue(0, "Email_Utente");
-        assertEquals(emailExpected,emailActual);
+        //assertEquals(emailExpected,emailActual);
         ITable actualTable1 = databaseDataSet.getTable("offerte");
         String typeActual  =(String) actualTable1.getValue(0, "Tipo");
         ITable expectedTable1 = expectedDataSet.getTable("offerte");
         String typeExpected = (String) expectedTable.getValue(0, "Tipo");
         assertEquals(typeExpected,typeActual);
         
-        }
+        
+        }*/
 }
