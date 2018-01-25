@@ -1,6 +1,5 @@
 package junitdbunit;
 
-import java.io.File;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -121,31 +120,7 @@ public class DbUnit extends DBTestCase {
         // Assert actual database table match expected table
         //Assertion.assertEquals(expectedTable, actualTable);
         assertEquals(DesExpected, DesActual);
-        assertThat(actualTable.getValue(1, "Localit√†"),is("Caraibi"));
+        assertThat(actualTable.getValue(1, "Localit‡†"),is("Caraibi"));
         assertThat(actualTable.getValue(1, "tipo"),is("Vacanza"));
 	}
-        /* vedi se vuoi eliminarlo proprio
-        @Test
-        public void testErrori() throws Exception {
-            // Fetch database data after executing your code
-        
-        IDataSet databaseDataSet = null;
-        IDatabaseConnection connection = getConnection();
-       
-        databaseDataSet = connection.createDataSet();
-        ITable actualTable = databaseDataSet.getTable("prodotti_acquistati");
-        String emailActual =(String) actualTable.getValue(0, "Email_Utente");
-        
-        IDataSet expectedDataSet = getDataSet();
-        ITable expectedTable = expectedDataSet.getTable("utenti");
-        String emailExpected = (String) expectedTable.getValue(0, "Email_Utente");
-        //assertEquals(emailExpected,emailActual);
-        ITable actualTable1 = databaseDataSet.getTable("offerte");
-        String typeActual  =(String) actualTable1.getValue(0, "Tipo");
-        ITable expectedTable1 = expectedDataSet.getTable("offerte");
-        String typeExpected = (String) expectedTable.getValue(0, "Tipo");
-        assertEquals(typeExpected,typeActual);
-        
-        
-        }*/
 }
