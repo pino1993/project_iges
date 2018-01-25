@@ -6,6 +6,7 @@
 package com.prezzipazzi.test;
 import com.prezzipazzi.*;
 import com.prezzipazzi.autenticazione.AutenticazioneServlet;
+import com.prezzipazzi.autenticazione.AuthException;
 import com.prezzipazzi.bean.Admin;
 import com.prezzipazzi.bean.BeniDiConsumo;
 import com.prezzipazzi.bean.Catalogo;
@@ -15,9 +16,11 @@ import com.prezzipazzi.bean.TipoUtente;
 import com.prezzipazzi.bean.User;
 import com.prezzipazzi.bean.Utente;
 import com.prezzipazzi.bean.Vacanze;
+import com.prezzipazzi.manager.ManagerAutenticazione;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.GregorianCalendar;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -56,13 +59,16 @@ public class JUnitTest {
     // The methods must be annotated with annotation @Test. For example:
     //
     @Test
-    public void TestUtente() {
+    public void TestUtente() throws SQLException, AuthException {
         User u = new User("test@email.it","test","testn","testc",0);
+        ManagerAutenticazione m=new ManagerAutenticazione();
 		assertEquals(0.0,u.getCredito(),0);
 		assertEquals("testc",u.getCognome());
                 assertEquals("test@email.it",u.getEmail());
                 assertEquals("testn",u.getNome());
                 assertEquals("test",u.getPassword());
+                //da testare
+                assertEquals("Email e/o password errate",m.loginUser("test@email.it", "test"));
                 
     }
     @Test
