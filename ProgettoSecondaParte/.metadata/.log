@@ -29,34 +29,3 @@ java.io.FileNotFoundException: /Users/ruggerotammaro/Desktop/project_iges/Proget
 	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
 	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)
-!SESSION 2018-01-24 17:06:28.232 -----------------------------------------------
-eclipse.buildId=4.6.1.M20160907-1200
-java.version=1.8.0_112
-java.vendor=Oracle Corporation
-BootLoader constants: OS=macosx, ARCH=x86_64, WS=cocoa, NL=it_IT
-Framework arguments:  -product org.eclipse.epp.package.java.product -keyring /Users/ruggerotammaro/.eclipse_keyring
-Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.epp.package.java.product -keyring /Users/ruggerotammaro/.eclipse_keyring
-
-!ENTRY org.eclipse.core.net 1 0 2018-01-24 17:06:42.964
-!MESSAGE System property http.nonProxyHosts has been set to local|*.local|169.254/16|*.169.254/16|192.168.1.1 by an external source. This value will be overwritten using the values from the preferences
-
-!ENTRY org.eclipse.ui.ide 4 4 2018-01-24 17:07:02.876
-!MESSAGE Problems saving workspace
-
-!ENTRY org.eclipse.ui.ide 4 1 2018-01-24 17:07:02.905
-!MESSAGE Problems occurred while trying to save the state of the workbench.
-!SUBENTRY 1 org.eclipse.core.resources 4 568 2018-01-24 17:07:02.905
-!MESSAGE Could not write metadata for '/RemoteSystemsTempFiles'.
-!STACK 0
-java.io.FileNotFoundException: /Users/ruggerotammaro/Desktop/project_iges/ProgettoSecondaParte/.metadata/.plugins/org.eclipse.core.resources/.projects/RemoteSystemsTempFiles/.markers (No such file or directory)
-	at java.io.FileOutputStream.open0(Native Method)
-	at java.io.FileOutputStream.open(FileOutputStream.java:270)
-	at java.io.FileOutputStream.<init>(FileOutputStream.java:213)
-	at java.io.FileOutputStream.<init>(FileOutputStream.java:162)
-	at org.eclipse.core.internal.localstore.SafeFileOutputStream.<init>(SafeFileOutputStream.java:51)
-	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1657)
-	at org.eclipse.core.internal.resources.SaveManager.visitAndSave(SaveManager.java:1739)
-	at org.eclipse.core.internal.resources.SaveManager.save(SaveManager.java:1199)
-	at org.eclipse.core.internal.resources.Workspace.save(Workspace.java:2283)
-	at org.eclipse.ui.internal.ide.application.IDEWorkbenchAdvisor$4.run(IDEWorkbenchAdvisor.java:456)
-	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:119)

@@ -1,15 +1,9 @@
 Andrea
 Barney
-5.0
+585.0
 Gianni
 Genovese
 1345.0
 Ruggero
 Tammaro
 300.0
-test@test.it
-test
-540.0
-nuovo
-user
-0.0

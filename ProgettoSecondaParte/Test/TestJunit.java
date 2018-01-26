@@ -25,20 +25,18 @@ public class TestJunit {
 		u = new User ("userLogin.txt");
 		assertEquals(1,u.login("si", "Andrea", "Barney"));
 		//eliminare user dal file userLogin prima di eseguire
-		assertEquals(0,u.login("no", "nuovo", "user"));
+		assertEquals(1,u.login("no", "nuovo", "user"));
 		//ritorna 0 se l'utente già esiste
 		assertEquals(0,u.login("no", "Andrea", "Barney"));
 		assertEquals("Saldo insufficiente",u.acquista(8, a.getCat(), 1));
-                assertEquals("Andrea",u.getNomeUt());
-                
 		
 }
 	@Test
 	public void testBeni() throws Exception{
-		b=new BeniDiConsumo(1, 100, "Scarpe Nike", 10, "Amazon", 4);
+		b=new BeniDiConsumo(1, 100, "Cena per 2", 10, "Amazon", 4);
 		assertEquals(b.getFornitore(),"Amazon");
 		assertEquals(b.getGiudizio(),4);
-		assertEquals(b.getDescrizione(),"Scarpe Nike");
+		assertEquals(b.getDescrizione(),"Cena per 2");
 		assertEquals(b.getDaVendere(),10);
 		assertEquals(b.eAcquistabile(),true);
 		assertEquals(b.sconti(),false);	
@@ -60,10 +58,10 @@ public class TestJunit {
 	}
 	@Test
 	public void testPrestazioniOpera() throws Exception{
-		p=new PrestazioniOpera(23,80, "Napoli", "Spettacolo di Pinocchio","Compagnia Teatrale",5);
+		p=new PrestazioniOpera(23,80, "Cupertino", "Keynote Apple","Apple",5);
 		assertEquals(p.eAcquistabile(),true);
-		assertEquals(p.getFornitore(),"Compagnia Teatrale");
-		assertEquals(p.getLocalita(),"Napoli");
+		assertEquals(p.getFornitore(),"Apple");
+		assertEquals(p.getLocalita(),"Cupertino");
 		assertEquals(p.getProdVenduti(),0);
 		assertEquals(p.sconti(),false);
 		System.out.println(p.toString());	
