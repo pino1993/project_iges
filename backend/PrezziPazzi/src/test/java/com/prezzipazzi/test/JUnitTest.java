@@ -58,19 +58,19 @@ public class JUnitTest {
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
-    @Test
-    public void TestUtente() throws SQLException, AuthException {
-        User u = new User("test@email.it","test","testn","testc",0);
-        ManagerAutenticazione m=new ManagerAutenticazione();
-		assertEquals(0.0,u.getCredito(),0);
-		assertEquals("testc",u.getCognome());
-                assertEquals("test@email.it",u.getEmail());
-                assertEquals("testn",u.getNome());
-                assertEquals("test",u.getPassword());
-                //da testare
-                assertEquals("Email e/o password errate",m.loginUser("test@email.it", "test"));
-                
-    }
+//    @Test
+//    public void TestUtente() throws SQLException, AuthException {
+//        User u = new User("test@email.it","test","testn","testc",0);
+//        ManagerAutenticazione m=new ManagerAutenticazione();
+//		assertEquals(0.0,u.getCredito(),0);
+//		assertEquals("testc",u.getCognome());
+//                assertEquals("test@email.it",u.getEmail());
+//                assertEquals("testn",u.getNome());
+//                assertEquals("test",u.getPassword());
+//                //da testare
+//                assertEquals("Email e/o password errate",m.loginUser("test@email.it", "test"));
+//                
+//    }
     @Test
     public void TestBeni(){
        BeniDiConsumo b=new BeniDiConsumo(1, 100,"prova.jpg", "Scarpe nike", 10, "Amazon", 4);
