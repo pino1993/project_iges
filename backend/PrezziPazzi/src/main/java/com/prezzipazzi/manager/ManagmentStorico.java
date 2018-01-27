@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  */
 public class ManagmentStorico {
     
-     public synchronized Catalogo getStoricoOfferte(String idOfferte)
+     public synchronized Catalogo getStoricoOfferte(String idOfferte,String emailUtente)
             throws SQLException, AuthException {
 
         Connection conn = null;
@@ -38,9 +38,10 @@ public class ManagmentStorico {
         try {
             conn = Database.getConnessione();
             pstmt = conn.prepareStatement(
-                    "SELECT Id_Offerte FROM prodotti_acquistati WHERE Id_Offerte= ?");
+                    "SELECT Id_Offerte FROM prodotti_acquistati WHERE Id_Offerte= ? AND Email_Utente = ?");
 
             pstmt.setString(1,idOfferte);
+            pstmt.setString(2,emailUtente);
             ResultSet rs = pstmt.executeQuery();
             
  
@@ -105,7 +106,7 @@ public class ManagmentStorico {
                
             }
             rs.close();
-            System.out.println("Eccosono    uiiiiiiii"+c.getArray());
+           
             return c; 
 
 

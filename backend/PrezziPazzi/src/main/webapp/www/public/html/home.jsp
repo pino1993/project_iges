@@ -158,10 +158,10 @@
              <Row className="show-grid">
             <Col md={4}>
              <form name="storico" action="" method="POST">
-              <% for(int i=0;i<cat.size();i++){%>
-              <input type="hidden" name="idOfferta<%=i%>" value="<%=cat.getItem(i).getId()%>" />
+             
+              <input type="hidden" name="idOfferta" value="" />
                
-              <%System.out.println("hjghjggkhghgkgkhgkhhgkhggj"+cat.getItem(i).getId());}%>
+             
            <button type="primary" onClick={() => popo()} class="btn btn-primary">Prodotti acquistati</button>
           
            

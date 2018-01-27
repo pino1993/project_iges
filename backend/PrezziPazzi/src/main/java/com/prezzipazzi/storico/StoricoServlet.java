@@ -9,6 +9,7 @@ import com.prezzipazzi.acquisto.AcquistoServlet;
 import com.prezzipazzi.autenticazione.AuthException;
 import com.prezzipazzi.bean.Catalogo;
 import com.prezzipazzi.bean.Offerte;
+import com.prezzipazzi.bean.Utente;
 import com.prezzipazzi.manager.ManagmentStorico;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -39,15 +40,18 @@ public class StoricoServlet extends HttpServlet {
            try {
             switch (request.getServletPath()) {
                 case "/Storico":
-                    String idOfferta = request.getParameter("idOfferta1");
+                   // String idOfferta = request.getParameter("idOfferta"+1);
                     
-                    System.out.println(idOfferta);
-                 
+                   // System.out.println(idOfferta);
+                      Catalogo c = (Catalogo) request.getSession().getAttribute("catalogo");
+                     Utente u=(Utente) request.getSession().getAttribute("utente");
                     ManagmentStorico mStorico = new ManagmentStorico();
-                    request.getSession().setAttribute("cat", mStorico.getStoricoOfferte(idOfferta));
                     
+                    request.getSession().setAttribute("cat", mStorico.getStoricoOfferte(""+c.getItem(1).getId(),u.getEmail()));                    
+              for(int i=0;i<c.size();i++){
+                  System.out.println("Le offerte acquistate: "+mStorico.getStoricoOfferte(""+c.getItem(i).getId(),u.getEmail()).getArray());
+              }
               
-                    System.out.println("sdfsdf"+mStorico.getStoricoOfferte(idOfferta).getArray());
                     getServletContext()
                     .getRequestDispatcher("/www/public/html/storico.jsp")
                     .forward(request, response);
