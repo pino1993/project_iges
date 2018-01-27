@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  */
 public class ManagmentStorico {
     
-     public synchronized void getStoricoOfferte(String idOfferte)
+     public synchronized Catalogo getStoricoOfferte(String idOfferte)
             throws SQLException, AuthException {
 
         Connection conn = null;
@@ -56,36 +56,15 @@ public class ManagmentStorico {
               
                
             }
-          getOffers(offers);
-            rs.close();
-           
-
-        } finally {
-            try {
-                if (pstmt != null) {
-                    pstmt.close();
-                }
-            } finally {
-                if (conn != null) {
-                    conn.close();
-                }
-            }
-        }
-    }
-
-    private synchronized Catalogo getOffers(String offers) 
-        throws SQLException, AuthException { 
         
-         Connection conn = null;
-        PreparedStatement pstmt = null;
 
-        try {
+        
             conn = Database.getConnessione();
             pstmt = conn.prepareStatement(
                     "SELECT * FROM offerte WHERE Id_Offerte= ?");
 
             pstmt.setString(1,offers);
-            ResultSet rs = pstmt.executeQuery();
+            ResultSet rst = pstmt.executeQuery();
             
             String id,img,desc;
             Double prezzo;
@@ -94,32 +73,32 @@ public class ManagmentStorico {
             Catalogo c = new Catalogo();
            
            
-            if (rs == null) {
+            if (rst == null) {
                 throw new AuthException("Nessuna Offerta");
             }
-               while (rs.next()) {
+               while (rst.next()) {
               
                GregorianCalendar cal =  new GregorianCalendar();
                GregorianCalendar cal2 =  new GregorianCalendar();
-               switch(rs.getString("Tipo")){
+               switch(rst.getString("Tipo")){
                    case "BeniDiConsumo":
-                       c.addOfferta(new BeniDiConsumo(rs.getInt("Id_Offerte"), rs.getDouble("Prezzo"),rs.getString("Immagine"),rs.getString("Descrizione"),rs.getInt("Disponibilità"),rs.getString("Nome_Fornitore"),rs.getInt("Giudizio")));
+                       c.addOfferta(new BeniDiConsumo(rst.getInt("Id_Offerte"), rst.getDouble("Prezzo"),rst.getString("Immagine"),rst.getString("Descrizione"),rst.getInt("Disponibilità"),rst.getString("Nome_Fornitore"),rst.getInt("Giudizio")));
                    break;
                    
                    case "Cene":
-                       cal.setTime(rs.getDate("Scadenza"));
-                       c.addOfferta(new Cene(rs.getInt("Id_Offerte"),rs.getDouble("Prezzo"),rs.getString("Immagine"),rs.getString("Descrizione"),rs.getString("Ristorante"),rs.getString("Località"),cal,rs.getInt("Disponibilità")));
+                       cal.setTime(rst.getDate("Scadenza"));
+                       c.addOfferta(new Cene(rst.getInt("Id_Offerte"),rst.getDouble("Prezzo"),rst.getString("Immagine"),rst.getString("Descrizione"),rst.getString("Ristorante"),rst.getString("Località"),cal,rst.getInt("Disponibilità")));
                    break;
                    
                    case "PrestazioniOpera":
                        
-                       c.addOfferta(new PrestazioniOpera(rs.getInt("Id_Offerte"),rs.getDouble("Prezzo"),rs.getString("Immagine"),rs.getString("Località"),rs.getString("Descrizione"),rs.getString("Nome_Fornitore"),rs.getInt("Giudizio")));
+                       c.addOfferta(new PrestazioniOpera(rst.getInt("Id_Offerte"),rst.getDouble("Prezzo"),rst.getString("Immagine"),rst.getString("Località"),rst.getString("Descrizione"),rst.getString("Nome_Fornitore"),rst.getInt("Giudizio")));
                    break;
                    
                    case "Vacanze":
-                       cal.setTime(rs.getDate("Scadenza"));
-                       cal2.setTime(rs.getDate("Data_Partenza"));
-                       c.addOfferta(new Vacanze(rs.getInt("Id_Offerte"),rs.getDouble("Prezzo"),rs.getString("Immagine"),rs.getString("Descrizione"),rs.getString("Località"),cal,cal2));
+                       cal.setTime(rst.getDate("Scadenza"));
+                       cal2.setTime(rst.getDate("Data_Partenza"));
+                       c.addOfferta(new Vacanze(rst.getInt("Id_Offerte"),rst.getDouble("Prezzo"),rst.getString("Immagine"),rst.getString("Descrizione"),rst.getString("Località"),cal,cal2));
                    break;
                  
                }
@@ -129,6 +108,7 @@ public class ManagmentStorico {
             System.out.println("Eccosono    uiiiiiiii"+c.getArray());
             return c; 
 
+
         } finally {
             try {
                 if (pstmt != null) {
@@ -141,6 +121,8 @@ public class ManagmentStorico {
             }
         }
     }
+
+    
 
     
 }

@@ -7,9 +7,12 @@ package com.prezzipazzi.storico;
 
 import com.prezzipazzi.acquisto.AcquistoServlet;
 import com.prezzipazzi.autenticazione.AuthException;
+import com.prezzipazzi.bean.Catalogo;
+import com.prezzipazzi.bean.Offerte;
 import com.prezzipazzi.manager.ManagmentStorico;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -36,15 +39,17 @@ public class StoricoServlet extends HttpServlet {
            try {
             switch (request.getServletPath()) {
                 case "/Storico":
-                    String idOfferta = request.getParameter("idOfferta");
+                    String idOfferta = request.getParameter("idOfferta1");
                     
                     System.out.println(idOfferta);
-                    
+                 
                     ManagmentStorico mStorico = new ManagmentStorico();
-                    mStorico.getStoricoOfferte(idOfferta);
+                    request.getSession().setAttribute("cat", mStorico.getStoricoOfferte(idOfferta));
                     
+              
+                    System.out.println("sdfsdf"+mStorico.getStoricoOfferte(idOfferta).getArray());
                     getServletContext()
-                    .getRequestDispatcher("/www/public/html/home.jsp")
+                    .getRequestDispatcher("/www/public/html/storico.jsp")
                     .forward(request, response);
                     break;
             }

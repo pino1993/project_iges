@@ -158,8 +158,14 @@
              <Row className="show-grid">
             <Col md={4}>
              <form name="storico" action="" method="POST">
-              <input id="valore" type="hidden" name="idOfferta" value="" />
-           <button type="primary" onClick={() => popo(<%=cat.getItem(2).getId()%>)} class="btn btn-primary">Prodotti acquistati</button>
+              <% for(int i=0;i<cat.size();i++){%>
+              <input type="hidden" name="idOfferta<%=i%>" value="<%=cat.getItem(i).getId()%>" />
+               
+              <%System.out.println("hjghjggkhghgkgkhgkhhgkhggj"+cat.getItem(i).getId());}%>
+           <button type="primary" onClick={() => popo()} class="btn btn-primary">Prodotti acquistati</button>
+          
+           
+               
            </form>
             </Col>
             </Row>
@@ -175,9 +181,9 @@
             ReactDOM.render(gridInstance, document.getElementById("hello"));
         </script>
         <script>
-                  function popo(numero){
+                  function popo(){
                       document.forms[1].action = 'Storico';
-                      console.log("ID ", document.getElementById("valore").value=numero);
+                     // console.log("ID ", document.getElementById("valore").value=numero);
                   }
                     function purchase(num) {
                         console.log("Purchase ", document.getElementById("valueToPass").value)
