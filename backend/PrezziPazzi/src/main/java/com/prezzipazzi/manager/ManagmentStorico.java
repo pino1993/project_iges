@@ -29,7 +29,7 @@ import java.util.logging.Logger;
  */
 public class ManagmentStorico {
     
-     public synchronized Catalogo getStoricoOfferte(String idOfferte,String emailUtente)
+     public synchronized Catalogo getStoricoOfferte(String emailUtente)
             throws SQLException, AuthException {
 
         Connection conn = null;
@@ -38,10 +38,10 @@ public class ManagmentStorico {
         try {
             conn = Database.getConnessione();
             pstmt = conn.prepareStatement(
-                    "SELECT Id_Offerte FROM prodotti_acquistati WHERE Id_Offerte= ? AND Email_Utente = ?");
+                    "SELECT Id_Offerte FROM prodotti_acquistati WHERE Email_Utente = ?");
 
-            pstmt.setString(1,idOfferte);
-            pstmt.setString(2,emailUtente);
+           // pstmt.setString(1,idOfferte);
+            pstmt.setString(1,emailUtente);
             ResultSet rs = pstmt.executeQuery();
             
  
@@ -50,15 +50,18 @@ public class ManagmentStorico {
             if (rs == null) {
                 throw new AuthException("Nessuna Offerta");
             }
+            
+            String id,img,desc;
+            Double prezzo;
+            Offerte off;
+            Catalogo c = new Catalogo();
+            
             while (rs.next()) {
               
-                 offers = rs.getString("Id_Offerte");
+                 offers= rs.getString("Id_Offerte");
                  
-              
                
-            }
-        
-
+            
         
             conn = Database.getConnessione();
             pstmt = conn.prepareStatement(
@@ -66,14 +69,9 @@ public class ManagmentStorico {
 
             pstmt.setString(1,offers);
             ResultSet rst = pstmt.executeQuery();
+            System.out.println("EECO:"+offers);
             
-            String id,img,desc;
-            Double prezzo;
-            Offerte off;
-            Catalogo cat;
-            Catalogo c = new Catalogo();
-           
-           
+          
             if (rst == null) {
                 throw new AuthException("Nessuna Offerta");
             }
@@ -103,6 +101,8 @@ public class ManagmentStorico {
                    break;
                  
                }
+               
+            }
                
             }
             rs.close();

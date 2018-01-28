@@ -159,13 +159,10 @@
             <Col md={4}>
              <form name="storico" action="" method="POST">
              
-              <input type="hidden" name="idOfferta" value="" />
-               
-             
+            <input type="hidden" name="idOfferta" value="" />
+
            <button type="primary" onClick={() => popo()} class="btn btn-primary">Prodotti acquistati</button>
-          
-           
-               
+
            </form>
             </Col>
             </Row>
@@ -183,7 +180,6 @@
         <script>
                   function popo(){
                       document.forms[1].action = 'Storico';
-                     // console.log("ID ", document.getElementById("valore").value=numero);
                   }
                     function purchase(num) {
                         console.log("Purchase ", document.getElementById("valueToPass").value)
